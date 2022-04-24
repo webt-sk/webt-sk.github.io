@@ -3,7 +3,12 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider attribute="class" enableColorScheme={false}>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      enableColorScheme={false}
+    >
       <Component {...pageProps} />
     </ThemeProvider>
   );
