@@ -16,10 +16,10 @@ export default function Logo() {
         width="40"
         href={
           !mounted
-            ? "logo_blue.svg"
+            ? "/logo_blue.svg"
             : resolvedTheme === "dark"
             ? "/logo_blue.svg"
-            : "logo_green.svg"
+            : "/logo_green.svg"
         }
         alt="webt logo"
       />
