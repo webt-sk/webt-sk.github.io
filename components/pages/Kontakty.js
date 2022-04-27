@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 export default function Kontakty(props) {
   return (
     <>
-      <Navbar />
+      <Navbar otherLang={props.otherLang} otherPage={props.otherPage} />
     </>
   );
 }

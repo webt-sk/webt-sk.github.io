@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 export default function ONas(props) {
   return (
     <>
-      <Navbar />
+      <Navbar otherLang={props.otherLang} otherPage={props.otherPage} />
     </>
   );
 }

@@ -7,3 +7,7 @@ html {
   background-size: cover;
   background-attachment: fixed;
 }
+
+* {
+  transition: color 0.2s;
+}
