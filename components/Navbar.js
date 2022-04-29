@@ -1,13 +1,24 @@
 import Link from "next/link";
+import { useState } from "react";
 
 import Logo from "./Logo";
 import ThemeButton from "./ThemeButton";
+import MenuButton from "./MenuButton";
 
 const linkClasses = "self-center mx-7 dark:text-white";
+
 export default function Navbar(props) {
+  const [isOpened, setIsOpened] = useState(false);
+
+  function openCloseHandler() {
+    setIsOpened((prevState) => {
+      return !prevState;
+    });
+  }
+
   return (
-    <header className="bg-transparent flex justify-end px-28 py-14">
-      <div className="flex justify-between mr-auto">
+    <header className="bg-transparent flex justify-end px-28 py-14 md:flex-row md:justify-around md:p-5">
+      <div className="flex justify-between mr-auto md:w-full md:m-0">
         <Link href={props.otherLang === "EN" ? "/" : "/en"}>
           <a className="flex">
             <Logo />
@@ -17,7 +28,7 @@ export default function Navbar(props) {
           </a>
         </Link>
       </div>
-      <nav className="flex justify-between">
+      <nav className={`flex justify-between ${!isOpened && "md:hidden"}`}>
         <Link href={props.otherLang === "EN" ? "/" : "/en"}>
           <a className={linkClasses}>
             {props.otherLang === "EN" ? "ÚVOD" : "HOME"}
@@ -42,7 +53,8 @@ export default function Navbar(props) {
           <a className={linkClasses}>{props.otherLang}</a>
         </Link>
       </nav>
-      <ThemeButton />
+      <ThemeButton className="ml-7 dark:text-white md:m-0" />
+      <MenuButton onClick={openCloseHandler} className="dark:text-white ml-5" />
     </header>
   );
 }

@@ -1,7 +1,7 @@
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 
-export default function ThemeButton() {
+export default function ThemeButton(props) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -21,7 +21,7 @@ export default function ThemeButton() {
   }
 
   return (
-    <button onClick={changeTheme} className="ml-7 dark:text-white">
+    <button onClick={changeTheme} className={props.className}>
       {!mounted ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
