@@ -21,7 +21,7 @@ export default function ThemeButton(props) {
   }
 
   return (
-    <button onClick={changeTheme} className={props.className}>
+    <button aria-label="Toggle theme" onClick={changeTheme} className={props.className}>
       {!mounted ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

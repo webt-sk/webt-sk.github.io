@@ -1,5 +1,5 @@
 import ONas from "../components/pages/ONas";
 
 export default function oNas() {
-  return <ONas otherLang="EN" otherPage="/en/about-us" />;
+  return <ONas otherLang="en" otherPage="/en/about-us" />;
 }

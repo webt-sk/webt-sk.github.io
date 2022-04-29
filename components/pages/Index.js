@@ -4,6 +4,7 @@ export default function Index(props) {
   return (
     <>
       <Navbar otherLang={props.otherLang} otherPage={props.otherPage} />
+      <main className="mt-40"></main>
     </>
   );
 }

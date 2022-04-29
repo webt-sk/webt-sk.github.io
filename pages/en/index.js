@@ -1,5 +1,5 @@
 import Index from "../../components/pages/Index.js";
 
 export default function Home() {
-  return <Index otherLang="SK" otherPage="/" />;
+  return <Index otherLang="sk" otherPage="/" />;
 }
