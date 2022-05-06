@@ -11,3 +11,9 @@ body {
 * {
   transition: color 0.2s;
 }
+
+@layer utilities {
+  .section-height {
+    height: calc(100vh - 160px);
+  }
+}
