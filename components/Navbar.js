@@ -24,7 +24,7 @@ export default function Navbar(props) {
 
   return (
     <header
-      className={`bg-black bg-opacity-20 flex justify-end px-28 py-14 flex-wrap sm:flex-row sm:justify-around sm:px-5 relative w-full top-0 ${
+      className={`bg-black bg-opacity-20 flex justify-end px-28 py-14 flex-wrap sm:flex-row sm:justify-around sm:px-5 fixed w-full top-0 ${
         isOpened && "pb-4"
       }`}
     >

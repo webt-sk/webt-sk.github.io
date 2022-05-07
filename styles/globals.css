@@ -15,5 +15,10 @@ body {
 @layer utilities {
   .section-height {
     height: calc(100vh - 160px);
+    margin-top: 160px;
   }
+}
+
+.anvil-inner {
+  @apply sm:w-full !important;
 }

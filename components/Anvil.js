@@ -8,7 +8,7 @@ export default function Anvil(props) {
   const div = useRef();
   const target = new THREE.Vector3(0, 0, 0);
   const [rendererState, setRendererState] = useState();
-  const [camera] = useState(new THREE.PerspectiveCamera(30, 1, 0.1, 1000));
+  const [camera] = useState(new THREE.PerspectiveCamera(25, 1, 0.1, 1000));
 
   const handleWindowResize = useCallback(() => {
     if (div.current && rendererState) {
@@ -89,7 +89,7 @@ export default function Anvil(props) {
 
   return (
     <div className={`${props.className}`}>
-      <div className=" h-full lg:w-1/2 lg:m-auto" ref={div}></div>;
+      <div className="h-full lg:w-1/2 lg:m-auto anvil-inner" ref={div}></div>
     </div>
   );
 }
