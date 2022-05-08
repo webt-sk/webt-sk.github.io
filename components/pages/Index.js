@@ -20,7 +20,7 @@ export default function Index(props) {
             </span>
           </h1>
           <button className="text-white bg-zelena dark:bg-modra text-base w-fit p-4 rounded-md mt-16 lg:m-auto lg:text-sm lg:mt-5">
-            ZÍSKAJTE SVOJU CENOVÚ PONUKU
+            {props.button}
           </button>
         </div>
         <Anvil className="h-full w-1/2 lg:w-full lg:h-1/2" />
