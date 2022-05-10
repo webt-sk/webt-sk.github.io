@@ -21,12 +21,6 @@ export default function Anvil(props) {
   useEffect(() => {
     if (div.current && !rendererState) {
       const scene = new THREE.Scene();
-      // const camera = new THREE.PerspectiveCamera(
-      //   35,
-      //   div.current.clientWidth / div.current.clientHeight,
-      //   0.1,
-      //   1000
-      // );
       camera.aspect = div.current.clientWidth / div.current.clientHeight;
       camera.updateProjectionMatrix();
       const renderer = new THREE.WebGLRenderer({
@@ -49,11 +43,6 @@ export default function Anvil(props) {
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
       scene.add(ambientLight);
 
-      // const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
-      // directionalLight.position.set(-10, 10, 19);
-      // directionalLight.castShadow = true;
-      // scene.add(directionalLight);
-
       loadGLTFModel(scene, "/anvil.glb", {
         receiveShadow: false,
         castShadow: true,
@@ -64,6 +53,7 @@ export default function Anvil(props) {
 
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.0;
       controls.target = target;
 
       let req;

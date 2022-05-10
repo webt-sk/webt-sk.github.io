@@ -6,7 +6,7 @@ import ThemeButton from "./ThemeButton";
 import MenuButton from "./MenuButton";
 
 const linkClasses =
-  "self-center mx-7 hover:text-zelena dark:hover:text-modra dark:text-white lg:my-2";
+  "self-center mx-7 hover:text-zelena dark:hover:text-modra dark:text-white lg:my-2 hover:scale-105";
 
 export default function Navbar(props) {
   const [isOpened, setIsOpened] = useState(false);
