@@ -1,3 +1,4 @@
+import  Link  from "next/link";
 import { useState } from "react";
 
 export default function PraceListItem(props) {
@@ -11,11 +12,15 @@ export default function PraceListItem(props) {
         hover ? "text-black dark:text-white" : "text-zelena dark:text-modra"
       } text-4xl sm:text-2xl mx-auto my-10 w-fit font-bold`}
     >
-      {!hover
-        ? props.nazov
-        : props.otherLang === "sk"
-        ? props.en.nazovPopis
-        : props.sk.nazovPopis}
+      <Link href={`/projekty/${props.url}`}>
+        <a>
+          {!hover
+            ? props.nazov
+            : props.otherLang === "sk"
+            ? props.en.nazovPopis
+            : props.sk.nazovPopis}
+        </a>
+      </Link>
     </li>
   );
 }

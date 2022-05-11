@@ -1,17 +1,15 @@
 import Layout from "../Layout";
-import prace from "../../lib/prace";
+import { prace } from "../../lib/prace";
 import PraceListItem from "../PraceListItem";
 
 export default function Projekty(props) {
   return (
-    <>
-      <Layout otherLang={props.otherLang} otherPage={props.otherPage}>
-        <ul className="w-full">
-          {prace.map((praca, index) => (
-            <PraceListItem otherLang={props.otherLang} key={index} {...praca} />
-          ))}
-        </ul>
-      </Layout>
-    </>
+    <Layout otherLang={props.otherLang} otherPage={props.otherPage}>
+      <ul className="w-full">
+        {prace.map((praca, index) => (
+          <PraceListItem otherLang={props.otherLang} key={index} {...praca} />
+        ))}
+      </ul>
+    </Layout>
   );
 }
