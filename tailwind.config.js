@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        zelena: "#82A571",
+        zelena: "#156058",
         modra: "#8BBBB6",
       },
     },
@@ -19,6 +19,7 @@ module.exports = {
     },
     backgroundImage: {
       dark: "url(/hviezdy_background.svg)",
+      light:  "url(/light_background.svg)",
     },
   },
   plugins: [],
