@@ -18,7 +18,7 @@ module.exports = {
       "2xl": { max: "1536px" },
     },
     backgroundImage: {
-      dark: "url(/background_dark.svg)",
+      dark: "url(/hviezdy_background.svg)",
     },
   },
   plugins: [],
