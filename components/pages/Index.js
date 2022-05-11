@@ -10,6 +10,8 @@ export default function Index(props) {
           <br />
           <span className="dark:text-modra text-zelena">
             {props.h1_colored}
+            <br />
+            {props.h1_3rd_line}
           </span>
         </h1>
         <button className="text-black bg-zelena dark:bg-modra text-base w-fit p-4 rounded-md mt-16 lg:m-auto lg:text-sm lg:mt-5">
