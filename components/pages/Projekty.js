@@ -1,9 +1,17 @@
-import Navbar from "../Navbar";
+import Layout from "../Layout";
+import prace from "../../lib/prace";
+import PraceListItem from "../PraceListItem";
 
 export default function Projekty(props) {
   return (
     <>
-      <Navbar otherLang={props.otherLang} otherPage={props.otherPage} />
+      <Layout otherLang={props.otherLang} otherPage={props.otherPage}>
+        <ul className="w-full">
+          {prace.map((praca, index) => (
+            <PraceListItem otherLang={props.otherLang} key={index} {...praca} />
+          ))}
+        </ul>
+      </Layout>
     </>
   );
 }
