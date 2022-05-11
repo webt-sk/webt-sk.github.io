@@ -1,6 +1,6 @@
 export default function MenuButton(props) {
   return (
-    <button onClick={props.onClick} className={props.className}>
+    <button onClick={props.onClick} className={props.className} aria-label="menu">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"

@@ -20,7 +20,7 @@ export default function Navbar(props) {
   useEffect(() => {
     document.querySelector("html").lang =
       props.otherLang === "sk" ? "en" : "sk";
-  }, []);
+  }, [props.otherLang]);
 
   return (
     <header

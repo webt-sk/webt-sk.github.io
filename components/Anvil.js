@@ -4,9 +4,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { loadGLTFModel } from "../lib/model";
 
+const target = new THREE.Vector3(0, 0, 0);
+
 export default function Anvil(props) {
   const div = useRef();
-  const target = new THREE.Vector3(0, 0, 0);
   const [rendererState, setRendererState] = useState();
   const [camera] = useState(new THREE.PerspectiveCamera(25, 1, 0.1, 1000));
 
@@ -68,7 +69,7 @@ export default function Anvil(props) {
         renderer.dispose();
       };
     }
-  });
+  }, [camera, rendererState]);
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize, false);
