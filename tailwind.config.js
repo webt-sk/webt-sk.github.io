@@ -19,7 +19,7 @@ module.exports = {
     },
     backgroundImage: {
       dark: "url(/hviezdy_background.svg)",
-      light:  "url(/light_background.svg)",
+      light: "url(/light_background.svg)",
     },
   },
   plugins: [],

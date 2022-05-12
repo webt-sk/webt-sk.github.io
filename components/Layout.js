@@ -8,7 +8,7 @@ export default function Layout(props) {
         <title>webT</title>
       </Head>
       <Navbar otherLang={props.otherLang} otherPage={props.otherPage} />
-      <main className="section-height flex flex-wrap-reverse">
+      <main className={`section-height flex flex-wrap-reverse ${props.className}`}>
         {props.children}
       </main>
     </>
