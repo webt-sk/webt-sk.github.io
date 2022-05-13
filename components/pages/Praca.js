@@ -5,7 +5,7 @@ export default function Praca(props) {
     <Layout
       otherLang={props.otherLang}
       otherPage={props.otherPage}
-      className="content-center justify-evenly xl:h-fit"
+      className="flex-wrap-reverse content-center justify-evenly xl:h-fit"
     >
       <div
         className="w-12 h-1/2 self-center xl:h-80 sm:w-5"

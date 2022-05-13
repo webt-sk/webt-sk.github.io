@@ -22,3 +22,28 @@ body {
 .anvil-inner {
   @apply sm:w-full !important;
 }
+
+.kontakty {
+  @apply text-black dark:text-white inline-block;
+}
+
+.kontakty-svg {
+  @apply kontakty h-8 w-8;
+}
+
+.kontakty-a {
+  @apply kontakty ml-14 text-xl self-center;
+}
+
+.kontakty-inputs {
+  @apply placeholder-gray-500 dark:placeholder-gray-300 text-black dark:text-white bg-transparent border-b border-white border-black dark:border-white block text-xl my-8;
+}
+
+.kontakty-ul {
+  margin-left: 5%;
+  @apply flex flex-col justify-center md:ml-0;
+}
+
+.kontakty-ul > li {
+  @apply my-5 flex;
+}
