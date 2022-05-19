@@ -71,10 +71,8 @@ export default function Model(props) {
         req = requestAnimationFrame(animate);
         if (props.animate === true) mixer.update(clock.getDelta());
         if (props.orbitControls === true) {
-          light.position.copy(
-            camera.position.clone().add(new THREE.Vector3(0, 5, 8))
-          );
           controls.update();
+          light.position.copy(camera.position.clone());
         }
 
         renderer.render(scene, camera);

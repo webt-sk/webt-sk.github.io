@@ -3,7 +3,7 @@ import Model from "../3DModel";
 import { PerspectiveCamera } from "three";
 
 export default function ONas(props) {
-  const camera = new PerspectiveCamera(40, 1, 0.1, 100);
+  const camera = new PerspectiveCamera(35, 1, 0.1, 100);
   camera.position.set(0, 3, 14);
   return (
     <>
