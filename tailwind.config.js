@@ -19,7 +19,10 @@ module.exports = {
     },
     backgroundImage: {
       dark: "url(/hviezdy_background.svg)",
-      light: "url(/light_background.svg)",
+      darkClean:
+        "linear-gradient(to top, #01041f, #050622, #0a0725, #0e0928, #120a2b);",
+      light:
+        "linear-gradient(to right top, #badaea, #d0e2f1, #e3ebf7, #f3f4fb, #ffffff);",
     },
   },
   plugins: [],

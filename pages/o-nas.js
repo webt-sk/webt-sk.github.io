@@ -6,6 +6,8 @@ const sk = {
   h1_3: "skupina kreativcov,",
   p: "ktorá spája odborné znalosti v tvorbe webov, aby vás uviedla do online sveta.",
   p2: "Vo webT sa venujeme samotnej tvorbe webov, eshopov, aplikácií, ale samozrejme aj grafike a marketingu.",
+  title: "O nás - webT",
+  description: "",
 };
 
 export default function oNas() {

@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   Envelope,
   Facebook,
   Instagram,
   Telephone,
 } from "react-bootstrap-icons";
+import Head from "next/head";
 
 import Layout from "../Layout";
 
@@ -15,6 +16,12 @@ export default function Kontakty(props) {
   const emailInput = useRef();
   const messageInput = useRef();
   const honeypotInput = useRef();
+
+  useEffect(() => {
+    document.body.className = "bg-light dark:bg-darkClean";
+
+    return () => (document.body.className = "dark:bg-dark bg-light");
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -38,6 +45,10 @@ export default function Kontakty(props) {
       otherLang={props.otherLang}
       otherPage={props.otherPage}
     >
+      <Head>
+        <title>{props.title}</title>
+        <meta name="description" content={props.description} />
+      </Head>
       {response.status === 200 ? (
         <p className="text-black dark:text-white">
           {props.otherLang === "sk" ? "" : ""}

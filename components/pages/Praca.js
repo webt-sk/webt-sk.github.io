@@ -1,6 +1,13 @@
 import Layout from "../Layout";
+import { useEffect } from "react";
 
 export default function Praca(props) {
+  useEffect(() => {
+    document.body.className = "bg-light dark:bg-darkClean";
+
+    return () => (document.body.className = "dark:bg-dark bg-light");
+  }, []);
+
   return (
     <Layout
       otherLang={props.otherLang}
