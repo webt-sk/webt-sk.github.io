@@ -21,7 +21,3 @@ body {
   }
 }
 
-.anvil-inner {
-  @apply sm:w-full !important;
-}
-

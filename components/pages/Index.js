@@ -1,7 +1,11 @@
-import Anvil from "../Anvil";
+import Model from "../3DModel";
 import Layout from "../Layout";
+import { PerspectiveCamera } from "three";
+import Link from "next/link";
 
 export default function Index(props) {
+  const camera = new PerspectiveCamera(25, 1, 0.1, 1000);
+  camera.position.set(0, 0.8, 3);
   return (
     <Layout
       className="flex-wrap-reverse"
@@ -18,11 +22,18 @@ export default function Index(props) {
             {props.h1_3rd_line}
           </span>
         </h1>
-        <button className="text-white dark:text-black bg-zelena dark:bg-modra text-sm w-fit p-4 rounded-md mt-16 lg:m-auto lg:text-sm lg:mt-5">
-          {props.button}
-        </button>
+        <Link href={props.otherLang === "sk" ? "/en/contact" : "/kontakty"}>
+          <a className="text-white dark:text-black bg-zelena dark:bg-modra text-sm w-fit p-4 rounded-md mt-16 lg:m-auto lg:text-sm lg:mt-5">
+            {props.button}
+          </a>
+        </Link>
       </div>
-      <Anvil className="h-full w-1/2 lg:w-full lg:h-1/2" />
+      <Model
+        className="h-full w-1/2 lg:w-full lg:h-1/2"
+        model="anvil.glb"
+        orbitControls={true}
+        camera={camera}
+      />
     </Layout>
   );
 }

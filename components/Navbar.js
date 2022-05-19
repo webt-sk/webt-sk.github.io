@@ -58,7 +58,7 @@ export default function Navbar(props) {
             {props.otherLang === "en" ? "PROJEKTY" : "PROJECTS"}
           </a>
         </Link>
-        <Link href={props.otherLang === "en" ? "/kontakt" : "/en/contact"}>
+        <Link href={props.otherLang === "en" ? "/kontakty" : "/en/contact"}>
           <a className={linkClasses}>
             {props.otherLang === "en" ? "KONTAKTY" : "CONTACTS"}
           </a>

@@ -6,10 +6,11 @@ import { loadGLTFModel } from "../lib/model";
 
 const target = new THREE.Vector3(0, 0, 0);
 
-export default function Anvil(props) {
+export default function Model(props) {
   const div = useRef();
   const [rendererState, setRendererState] = useState();
-  const [camera] = useState(new THREE.PerspectiveCamera(25, 1, 0.1, 1000));
+  const [camera] = useState(props.camera);
+  let mixer;
 
   const handleWindowResize = useCallback(() => {
     if (div.current && rendererState) {
@@ -33,37 +34,52 @@ export default function Anvil(props) {
       renderer.shadowMap.enabled = true;
       setRendererState(renderer);
 
-      camera.position.z = 3;
-      camera.position.y = 0.8;
-
       const light = new THREE.PointLight(0xffffff, 1, 100, 2);
-      light.power = 30;
-      light.position.set(-10, 10, 19);
+      light.power = 25;
+      light.position.set(0, 5, 8);
       scene.add(light);
 
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
       scene.add(ambientLight);
 
-      loadGLTFModel(scene, "/anvil.glb", {
+      loadGLTFModel(scene, props.model, {
         receiveShadow: false,
         castShadow: true,
-      }).then(() => {
+      }).then((glb) => {
+        if (props.animate === true) {
+          mixer = new THREE.AnimationMixer(glb.scene);
+          glb.animations.forEach((clip) => {
+            mixer.clipAction(clip).play();
+          });
+        }
         div.current.appendChild(renderer.domElement);
         animate();
       });
 
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 1.0;
-      controls.target = target;
+      if (props.orbitControls === true) {
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.0;
+        controls.target = target;
+      }
 
       let req;
 
+      const clock = new THREE.Clock();
+
       function animate() {
         req = requestAnimationFrame(animate);
-        controls.update();
+        if (props.animate === true) mixer.update(clock.getDelta());
+        if (props.orbitControls === true) {
+          light.position.copy(
+            camera.position.clone().add(new THREE.Vector3(0, 5, 8))
+          );
+          controls.update();
+        }
+
         renderer.render(scene, camera);
       }
+
       return () => {
         cancelAnimationFrame(req);
         renderer.dispose();
@@ -80,7 +96,7 @@ export default function Anvil(props) {
 
   return (
     <div className={`${props.className}`}>
-      <div className="h-full lg:w-1/2 lg:m-auto anvil-inner" ref={div}></div>
+      <div className="h-full lg:w-1/2 lg:m-auto sm:!w-full" ref={div}></div>
     </div>
   );
 }
