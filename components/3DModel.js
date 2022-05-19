@@ -10,7 +10,6 @@ export default function Model(props) {
   const div = useRef();
   const [rendererState, setRendererState] = useState();
   const [camera] = useState(props.camera);
-  let mixer;
 
   const handleWindowResize = useCallback(() => {
     if (div.current && rendererState) {
@@ -41,6 +40,8 @@ export default function Model(props) {
 
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
       scene.add(ambientLight);
+
+      let mixer;
 
       loadGLTFModel(scene, props.model, {
         receiveShadow: false,
@@ -83,7 +84,7 @@ export default function Model(props) {
         renderer.dispose();
       };
     }
-  }, [camera, rendererState]);
+  }, [camera, rendererState, props.animate, props.model, props.orbitControls]);
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize, false);
