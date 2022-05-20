@@ -7,7 +7,7 @@ const en = {
   p: "which combines web design expertise to bring you into the online world.",
   p2: "At webT, we focus on the creation of websites, e-shops, applications, but of course also graphics and marketing.",
   title: "About us - webT",
-  description: "",
+  description: "We are a digital agency. We are making websites, e-shops and applications.",
 };
 
 export default function about() {

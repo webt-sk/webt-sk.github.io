@@ -19,7 +19,7 @@ export default function ONas(props) {
         </Head>
         <div className="w-1/2 text-black dark:text-white pl-28 md:px-28 sm:!px-5 flex flex-wrap content-center md:w-full">
           <h1 className="text-3xl xl:text-3xl xl:leading-normal w-full font-bold mb-7 leading-normal">
-            <span className="text-5xl text-modra">{props.h1}</span>
+            <span className="text-5xl dark:text-modra text-zelena">{props.h1}</span>
             <br />
             {props.h1_2}
             <br />

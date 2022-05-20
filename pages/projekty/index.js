@@ -6,7 +6,8 @@ export default function projekty() {
       otherLang="en"
       otherPage="/en/projects"
       title="Projekty - webT"
-      description=""
+      description="Spolupracujeme s veľa firmami. Komunikujeme a vždy sa snažíme výjsť v ústrety.
+      "
     />
   );
 }

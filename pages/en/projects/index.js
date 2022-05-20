@@ -6,7 +6,7 @@ export default function projects() {
       otherLang="sk"
       otherPage="/projekty"
       title="Projects - webT"
-      description=""
+      description="We work with many companies. We communicate and always try to meet our needs."
     />
   );
 }

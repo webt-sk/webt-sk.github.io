@@ -7,7 +7,7 @@ const sk = {
   p: "ktorá spája odborné znalosti v tvorbe webov, aby vás uviedla do online sveta.",
   p2: "Vo webT sa venujeme samotnej tvorbe webov, eshopov, aplikácií, ale samozrejme aj grafike a marketingu.",
   title: "O nás - webT",
-  description: "",
+  description: "Sme digitálna agentúra. Realizujeme weby, eshopy a aplikácie.",
 };
 
 export default function oNas() {

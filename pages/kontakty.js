@@ -6,7 +6,7 @@ export default function kontakty() {
       otherLang="en"
       otherPage="/en/contact"
       title="Kontakty - webT"
-      description=""
+      description="Kontaktovať nás môžte prostredníctvom klasických komunikačných médií, ale tak isto cez instagram či facebook."
     />
   );
 }
