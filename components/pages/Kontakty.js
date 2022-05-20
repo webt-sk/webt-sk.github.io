@@ -27,7 +27,7 @@ export default function Kontakty(props) {
     event.preventDefault();
     if (honeypotInput.current.value === "") {
       fetch("https://submit-form.com/E2Gd0PDo", {
-        method: "POST",
+        method: "GET",
         body: JSON.stringify({
           name: nameInput.current.value,
           email: emailInput.current.value,
