@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Logo from "./Logo";
-import ThemeButton from "./ThemeButton";
 import MenuButton from "./MenuButton";
+import ThemeButton from "./ThemeButton";
 
 const linkClasses =
   "self-center mx-7 hover:text-zelena dark:hover:text-modra dark:text-white lg:my-2 hover:scale-105";
 
 export default function Navbar(props) {
   const [isOpened, setIsOpened] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   function openCloseHandler() {
     setIsOpened((prevState) => {
@@ -22,11 +23,17 @@ export default function Navbar(props) {
       props.otherLang === "sk" ? "en" : "sk";
   }, [props.otherLang]);
 
+  useEffect(() => {
+    window.onscroll = () => {
+      window.pageYOffset === 0 ? setIsScrolled(false) : setIsScrolled(true);
+    };
+  }, []);
+
   return (
     <header
-      className={`flex justify-end px-28 py-14 flex-wrap sm:flex-row sm:justify-around sm:px-5 fixed w-full top-0 ${
-        isOpened && "pb-4"
-      }`}
+      className={`flex justify-end px-28 py-14 flex-wrap sm:flex-row sm:justify-around sm:px-5 fixed w-full top-0 bg-opacity-90 dark:bg-opacity-90 ${
+        isOpened ? "pb-4 bg-lightColor dark:bg-darkColor" : ""
+      } ${isScrolled ? "bg-lightColor dark:bg-darkColor" : ""}`}
     >
       <div className="flex justify-between mr-auto">
         <Link href={props.otherLang === "en" ? "/" : "/en"}>
@@ -71,7 +78,7 @@ export default function Navbar(props) {
       <MenuButton
         onClick={openCloseHandler}
         className="dark:text-white ml-5 hidden lg:block hover:text-zelena dark:hover:text-modra"
-      />
+      />{" "}
     </header>
   );
 }

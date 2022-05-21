@@ -8,6 +8,8 @@ module.exports = {
       colors: {
         zelena: "#156058",
         modra: "#8BBBB6",
+        darkColor: "#0e0928",
+        lightColor: "#f3f4fb",
       },
     },
     screens: {

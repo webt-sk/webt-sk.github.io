@@ -23,7 +23,15 @@ export default function Praca(props) {
       />
       <div className="w-1/3 self-center xl:w-4/5">
         <h1 className="dark:text-white text-2xl mb-5">{props.nazov}</h1>
-        <p className="dark:text-white">{props.f.popis}</p>
+        <p className="dark:text-white mb-8">{props.f.popis}</p>
+        <a
+          className={`py-3 px-5 text-lg rounded-lg ${props.link.text}`}
+          style={{ backgroundColor: props.color }}
+          href={props.link.link}
+          target="_blank"
+        >
+          WEB
+        </a>
       </div>
       <img
         className="self-center shadow-lg xl:w-5/6 xl:mb-10"

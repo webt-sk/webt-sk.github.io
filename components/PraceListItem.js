@@ -10,7 +10,7 @@ export default function PraceListItem(props) {
       onMouseLeave={() => setHover(false)}
       className={`${
         hover ? "text-black dark:text-white" : "text-zelena dark:text-modra"
-      } text-4xl sm:text-2xl mx-auto my-10 w-fit font-bold`}
+      } text-4xl sm:text-2xl mx-auto my-10 w-fit font-bold text-center`}
     >
       <Link
         href={
