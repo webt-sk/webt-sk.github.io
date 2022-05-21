@@ -28,7 +28,6 @@ export default function Praca(props) {
           className={`py-3 px-5 text-lg rounded-lg ${props.link.text}`}
           style={{ backgroundColor: props.color }}
           href={props.link.link}
-          target="_blank"
         >
           WEB
         </a>
