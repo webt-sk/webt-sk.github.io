@@ -66,48 +66,48 @@ export default function Kontakty(props) {
         </>
       ) : (
         <>
-          <form className="flex flex-col md:w-5/6" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder={props.otherLang === "sk" ? "Name" : "Celé meno"}
-              required=""
-              className="kontakty-inputs"
-              ref={nameInput}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required=""
-              className="kontakty-inputs"
-              ref={emailInput}
-            />
-            <textarea
-              name="message"
-              placeholder={
-                props.otherLang === "sk" ? "Message..." : "Správa..."
-              }
-              required=""
-              rows="10"
-              className="kontakty-inputs"
-              ref={messageInput}
-            ></textarea>
-            <input
-              type="text"
-              name="password"
-              className="kontakty-honey"
-              tabIndex="-1"
-              autoComplete="off"
-              ref={honeypotInput}
-            />
-            <button
-              className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2 m-auto md:mb-8"
-              type="submit"
-            >
-              {props.otherLang === "sk" ? "Send" : "Odoslať"}
-            </button>
-          </form>
+          {/* <form className="flex flex-col md:w-5/6" onSubmit={handleSubmit}> */}
+          {/*   <input */}
+          {/*     type="text" */}
+          {/*     name="name" */}
+          {/*     placeholder={props.otherLang === "sk" ? "Name" : "Celé meno"} */}
+          {/*     required="" */}
+          {/*     className="kontakty-inputs" */}
+          {/*     ref={nameInput} */}
+          {/*   /> */}
+          {/*   <input */}
+          {/*     type="email" */}
+          {/*     name="email" */}
+          {/*     placeholder="Email" */}
+          {/*     required="" */}
+          {/*     className="kontakty-inputs" */}
+          {/*     ref={emailInput} */}
+          {/*   /> */}
+          {/*   <textarea */}
+          {/*     name="message" */}
+          {/*     placeholder={ */}
+          {/*       props.otherLang === "sk" ? "Message..." : "Správa..." */}
+          {/*     } */}
+          {/*     required="" */}
+          {/*     rows="10" */}
+          {/*     className="kontakty-inputs" */}
+          {/*     ref={messageInput} */}
+          {/*   ></textarea> */}
+          {/*   <input */}
+          {/*     type="text" */}
+          {/*     name="password" */}
+          {/*     className="kontakty-honey" */}
+          {/*     tabIndex="-1" */}
+          {/*     autoComplete="off" */}
+          {/*     ref={honeypotInput} */}
+          {/*   /> */}
+          {/*   <button */}
+          {/*     className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2 m-auto md:mb-8" */}
+          {/*     type="submit" */}
+          {/*   > */}
+          {/*     {props.otherLang === "sk" ? "Send" : "Odoslať"} */}
+          {/*   </button> */}
+          {/* </form> */}
           <ul className="kontakty-ul">
             <li>
               <Telephone className="kontakty-svg" />
