@@ -49,7 +49,7 @@ export default function Kontakty(props) {
         <title>{props.title}</title>
         <meta name="description" content={props.description} />
       </Head>
-      {response.status === 200 ? (
+      {response.status === 302 ? (
         <p className="text-black dark:text-white">
           {props.otherLang === "sk" ? "" : ""}
         </p>
