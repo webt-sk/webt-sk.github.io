@@ -123,7 +123,7 @@ export default function Kontakty(props) {
             </li>
             <li>
               <Facebook className="kontakty-svg" />
-              <a className="kontakty-a" href="facebook.com/webt">
+              <a className="kontakty-a" href="https://www.facebook.com/webt.sk">
                 Facebook
               </a>
             </li>
