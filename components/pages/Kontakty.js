@@ -52,21 +52,18 @@ export default function Kontakty(props) {
         <meta name="description" content={props.description} />
       </Head>
       {response.status === 200 ? (
-        <>
+        <div className="flex flex-col justify-center">
           <p className="text-black dark:text-white">
             {props.otherLang === "sk"
               ? "Thanks for your message, we will respond as soon as we can."
               : "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."}
           </p>
           <Link href="/">
-            <a
-              className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2"
-              type="submit"
-            >
+            <a className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2 mt-7">
               {props.otherLang === "sk" ? "Home" : "Späť na úvod"}
             </a>
           </Link>
-        </>
+        </div>
       ) : response.status > 400 ? (
         <>
           <h1 className="text-black dark:text-white w-full text-center text-3xl mb-12">
