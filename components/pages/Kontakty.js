@@ -1,11 +1,11 @@
-import { useRef, useState, useEffect } from "react";
+import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
 import {
   Envelope,
   Facebook,
   Instagram,
   Telephone,
 } from "react-bootstrap-icons";
-import Head from "next/head";
 
 import Layout from "../Layout";
 
@@ -52,8 +52,8 @@ export default function Kontakty(props) {
       {response.status === 200 ? (
         <p className="text-black dark:text-white">
           {props.otherLang === "sk"
-            ? "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."
-            : "Thanks for your message, we will respond as soon as we can."}
+            ? "Thanks for your message, we will respond as soon as we can."
+            : "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."}
         </p>
       ) : response.status > 400 ? (
         <>
