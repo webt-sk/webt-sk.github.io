@@ -7,6 +7,8 @@ import {
   Telephone,
 } from "react-bootstrap-icons";
 
+import Link from "next/link";
+
 import Layout from "../Layout";
 
 export default function Kontakty(props) {
@@ -50,11 +52,21 @@ export default function Kontakty(props) {
         <meta name="description" content={props.description} />
       </Head>
       {response.status === 200 ? (
-        <p className="text-black dark:text-white">
-          {props.otherLang === "sk"
-            ? "Thanks for your message, we will respond as soon as we can."
-            : "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."}
-        </p>
+        <>
+          <p className="text-black dark:text-white">
+            {props.otherLang === "sk"
+              ? "Thanks for your message, we will respond as soon as we can."
+              : "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."}
+          </p>
+          <Link href="/">
+            <a
+              className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2"
+              type="submit"
+            >
+              {props.otherLang === "sk" ? "Home" : "Späť na úvod"}
+            </a>
+          </Link>
+        </>
       ) : response.status > 400 ? (
         <>
           <h1 className="text-black dark:text-white w-full text-center text-3xl mb-12">
