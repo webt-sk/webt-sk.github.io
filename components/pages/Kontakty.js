@@ -59,7 +59,7 @@ export default function Kontakty(props) {
               : "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."}
           </p>
           <Link href="/">
-            <a className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2 mt-7">
+            <a className="bg-zelena dark:bg-modra rounded text-white dark:text-black px-3 py-2 mt-7 w-fit m-auto">
               {props.otherLang === "sk" ? "Home" : "Späť na úvod"}
             </a>
           </Link>
