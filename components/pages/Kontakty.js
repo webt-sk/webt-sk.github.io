@@ -49,9 +49,11 @@ export default function Kontakty(props) {
         <title>{props.title}</title>
         <meta name="description" content={props.description} />
       </Head>
-      {response.status === 302 ? (
+      {response.status === 200 ? (
         <p className="text-black dark:text-white">
-          {props.otherLang === "sk" ? "" : ""}
+          {props.otherLang === "sk"
+            ? "Ďakujeme za vašu správu, odpovieme Vám čo najskôr."
+            : "Thanks for your message, we will respond as soon as we can."}
         </p>
       ) : response.status > 400 ? (
         <>
