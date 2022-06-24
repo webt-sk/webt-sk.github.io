@@ -22,6 +22,20 @@ export default function Document() {
           property="og:description"
           content="Digitálna agentúra, ktorá sa zameriava na tvorbu web stránok, aplikácií, eshopov a podobne."
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-RTXJPX4D34"
+        />
+        <script
+          async
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-RTXJPX4D34');`,
+          }}
+        />{" "}
       </Head>
       <body className="dark:bg-dark bg-light">
         <Main />
