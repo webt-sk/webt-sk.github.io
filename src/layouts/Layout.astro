@@ -1,0 +1,169 @@
+---
+import { Icon } from "astro-icon";
+import Logo from "../components/Logo.astro";
+import "../styles/globals.css";
+import HeaderLink from "../components/HeaderLink.astro";
+
+export interface Props {
+  lang: "en" | "sk";
+  links: {
+    name: string;
+    href: string;
+    prefetch?: boolean;
+  }[];
+}
+
+const props = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={props.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/logo.svg" />
+    <title>webT</title>
+  </head>
+  <body class="flex min-h-screen flex-col bg-pozadie text-white">
+    <!-- header -->
+    <div
+      id="header-container"
+      class="sticky left-0 top-0 z-30 box-border w-screen border-b border-b-transparent duration-300"
+    >
+      <header
+        class="mx-auto flex w-full max-w-screen-2xl items-center px-4 py-2 pr-4 text-white md:py-5"
+      >
+        <div class="flex-auto">
+          <a href={props.links[0].href}>
+            <Logo size={40} />
+          </a>
+        </div>
+        <div class="relative z-50 h-10 md:hidden">
+          <button id="header-menu-btn"
+            ><Icon name="bi:list" size={40} class="text-white" /></button
+          >
+        </div>
+
+        <div
+          id="header-links"
+          class="fixed right-0 top-0 z-40 hidden h-screen w-full max-w-[200px] border-l border-slate-800 bg-pozadie2 text-white sm:min-w-0 md:static md:block md:h-full md:max-w-fit md:border-transparent md:bg-transparent"
+        >
+          <nav
+            class="mt-24 flex flex-col gap-2 px-5 text-lg md:mt-0 md:flex-row md:gap-7 lg:gap-12"
+          >
+            {
+              props.links.map((link) => (
+                <HeaderLink href={link.href} prefetch={link.prefetch}>{link.name}</HeaderLink>
+              ))
+            }
+          </nav>
+        </div>
+        <!-- TODO: add blur -->
+        <div id="backdrop" class="fixed left-0 top-0 z-30 h-screen w-screen hidden">
+        </div>
+      </header>
+    </div>
+    <!-- header end -->
+
+    <div class="relative mx-auto w-full max-w-screen-2xl flex-auto px-4">
+      <slot />
+    </div>
+    <div class="mt-auto w-screen border-t border-t-slate-800 bg-pozadie2">
+      <footer
+        class="mx-auto flex w-full max-w-screen-2xl flex-wrap justify-evenly gap-4 bg-pozadie2 p-3 pt-5 sm:gap-7 md:p-4 lg:gap-16 lg:px-4"
+      >
+        <div class="mb-3 w-full sm:mb-0 md:w-fit md:flex-auto">
+          <a
+            class="flex items-center justify-center gap-3 md:justify-start"
+            href="/"
+          >
+            <Logo size={30} />
+            <div class="text-xl font-bold">webTool</div>
+          </a>
+        </div>
+        <div
+          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
+        >
+          <Icon size={20} class="text-zelena" name="bi:envelope-fill" />
+          <a href="mailto:info@webt.sk">info@webt.sk</a>
+        </div>
+        <div
+          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
+        >
+          <Icon size={20} class="text-zelena" name="bi:telephone-fill" />
+          <a href="tel:+421 917 938 624">+421&nbsp;917&nbsp;938&nbsp;624</a>
+        </div>
+        <div
+          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
+        >
+          <Icon size={20} class="text-zelena" name="bi:facebook" />
+          <a href="https://www.facebook.com/webt.sk">Facebook</a>
+        </div>
+        <div
+          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
+        >
+          <Icon size={20} class="text-zelena" name="bi:instagram" />
+          <a href="https://www.instagram.com/webt.sk/">Instagram</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script>
+  // toggle header on mobile
+  const headerMenuBtn = document.querySelector("#header-menu-btn")!;
+  const backdrop = document.querySelector("#backdrop")!;
+  const headerLinks = document.querySelector("#header-links")!;
+
+  let headerLinksOpened = false;
+
+  function backdropCloseToggle() {
+    if (!headerLinksOpened) {
+      console.log("adding event");
+      backdrop.addEventListener("click", headerLinksToggleEvent);
+      headerLinksOpened = true;
+    } else {
+      console.log("removing event");
+      backdrop.removeEventListener("click", headerLinksToggleEvent);
+      headerLinksOpened = false;
+    }
+  }
+
+  function headerLinksToggle(force?: boolean) {
+    headerLinks.classList.toggle("hidden", force);
+    backdrop.classList.toggle("backdrop-blur", force);
+    backdrop.classList.toggle("hidden", force);
+    backdropCloseToggle();
+  }
+
+  function headerLinksToggleEvent() {
+    headerLinksToggle();
+  }
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768 && headerLinksOpened) {
+      headerLinksToggle();
+    }
+  });
+
+  headerMenuBtn.addEventListener("click", headerLinksToggleEvent);
+
+  // header effects on scroll
+  const headerContainer = document.querySelector("#header-container")!;
+
+  function headerEffectsScrolled(isScrolled: boolean) {
+    if (isScrolled) {
+      headerContainer.classList.add("header-scroll-effects");
+    } else {
+      headerContainer.classList.remove("header-scroll-effects");
+    }
+  }
+
+  window.onscroll = () => {
+    if (window.scrollY === 0) {
+      headerEffectsScrolled(false);
+    } else {
+      headerEffectsScrolled(true);
+    }
+  };
+</script>

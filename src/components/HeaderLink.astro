@@ -1,0 +1,23 @@
+---
+export interface Props {
+  href: string;
+  class?: string;
+  prefetch?: boolean;
+}
+
+const props = Astro.props;
+
+const active = props.href === Astro.url.pathname;
+---
+
+<a
+  href={props.href}
+  class:list={[
+    "link-hover px-2 py-0.5 font-bold",
+    active && "rounded-lg bg-ruzova md:bg-transparent md:text-ruzova",
+    props.class,
+  ]}
+  rel={props.prefetch && "prefetch"}
+>
+  <slot />
+</a>

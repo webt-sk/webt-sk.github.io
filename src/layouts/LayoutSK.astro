@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  lang="sk"
+  links={[
+    {
+      name: "Úvod",
+      href: "/",
+      prefetch: true,
+    },
+    {
+      name: "Kto sme",
+      href: "/kto-sme",
+      prefetch: true,
+    },
+    {
+      name: "Projekty",
+      href: "/projekty",
+      prefetch: true,
+    },
+    {
+      name: "Blog",
+      href: "/blog",
+      prefetch: true,
+    },
+    {
+      name: "Kontakty",
+      href: "/kontakty",
+      prefetch: true,
+    },
+    {
+      name: "EN",
+      href: "/en",
+    },
+  ]}
+>
+  <slot />
+</Layout>

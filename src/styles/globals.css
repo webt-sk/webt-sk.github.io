@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .link-hover {
+    @apply relative transition-colors after:absolute after:-bottom-0.5 after:left-0 after:ml-[50%] after:hidden after:h-1 after:w-0 after:bg-zelena  after:duration-300 after:hover:ml-0 after:hover:w-full max-md:hover:text-zelena md:after:block;
+  }
+
+  .header-scroll-effects {
+    @apply !border-b-slate-800 bg-pozadie2 bg-opacity-80 backdrop-blur
+  }
+}
