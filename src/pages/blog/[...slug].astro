@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import LayoutSK from "../../layouts/LayoutSK.astro";
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog-sk");
+  return blog.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<LayoutSK>
+  <Content />
+</LayoutSK>

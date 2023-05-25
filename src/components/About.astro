@@ -1,0 +1,17 @@
+---
+import ThreeDee from "./ThreeDee.astro";
+---
+
+<main>
+  <ThreeDee
+    models={[
+      { href: "/kozmonaut.glb", positions: [0, 0, 0] },
+      { href: "/kozmonaut.glb", positions: [5, 0, 0] },
+    ]}
+    camera={{ position: [0, 0, 0], fov: 75 }}
+  />
+  <ThreeDee
+    models={[{ href: "/raketa.glb", positions: [0, 0, 0] }]}
+    camera={{ position: [0, 0, 0], fov: 75 }}
+  />
+</main>

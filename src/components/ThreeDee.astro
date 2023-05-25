@@ -1,0 +1,77 @@
+---
+export interface Props {
+  models: {
+    href: string;
+    positions: number[];
+  }[];
+  camera: {
+    position: number[];
+    fov?: number;
+    near?: number;
+    far?: number;
+  };
+}
+
+const props = Astro.props;
+---
+
+<canvas
+  class="three-dee-canvas"
+  data-models={props.models.map((m) => m.href).join(" ")}
+  data-model-positions={props.models
+    .map((m) => m.positions.join(" "))
+    .join("-")}
+  data-camera-position={props.camera.position.join(" ")}
+>
+</canvas>
+
+<script>
+  import * as THREE from "three";
+
+  class ThreeDeeView {
+    scene: THREE.Scene;
+    renderer: THREE.WebGLRenderer;
+    camera: THREE.PerspectiveCamera;
+
+    constructor(canvas: HTMLCanvasElement) {
+      this.scene = new THREE.Scene();
+      this.camera = new THREE.PerspectiveCamera();
+
+      this.parseDataset(canvas);
+
+      this.renderer = new THREE.WebGLRenderer({ canvas: canvas });
+      this.renderer.render(this.scene, this.camera);
+    }
+
+    // TODO: models & their positions to scene, set camera position, lights, animations?
+    private parseDataset(canvas: HTMLCanvasElement) {
+      this.parseCamera(canvas);
+      this.parseModels(canvas);
+    }
+
+    private parseCamera(canvas: HTMLCanvasElement) {
+      this.camera.position.copy(
+        this.parsePositions(canvas.dataset.cameraPosition!)
+      );
+    }
+
+    private parseModels(canvas: HTMLCanvasElement) {}
+
+    private parsePositions(position: string) {
+      const xyzStr = position.split(" ");
+      const cordinates = xyzStr.map((cordinate) => parseInt(cordinate, 10));
+      return new THREE.Vector3(cordinates[0], cordinates[1], cordinates[2]);
+    }
+  }
+
+  const canvases: NodeListOf<HTMLCanvasElement> =
+    document.querySelectorAll(".three-dee-canvas");
+
+  const threeDeeViews: ThreeDeeView[] = [];
+
+  canvases.forEach((canvas) => {
+    threeDeeViews.push(new ThreeDeeView(canvas));
+  });
+
+  console.log(threeDeeViews);
+</script>

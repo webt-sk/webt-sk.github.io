@@ -24,7 +24,6 @@ const props = Astro.props;
     <title>webT</title>
   </head>
   <body class="flex min-h-screen flex-col bg-pozadie text-white">
-    <!-- header -->
     <div
       id="header-container"
       class="sticky left-0 top-0 z-30 box-border w-screen border-b border-b-transparent duration-300"
@@ -52,17 +51,20 @@ const props = Astro.props;
           >
             {
               props.links.map((link) => (
-                <HeaderLink href={link.href} prefetch={link.prefetch}>{link.name}</HeaderLink>
+                <HeaderLink href={link.href} prefetch={link.prefetch}>
+                  {link.name}
+                </HeaderLink>
               ))
             }
           </nav>
         </div>
-        <!-- TODO: add blur -->
-        <div id="backdrop" class="fixed left-0 top-0 z-30 h-screen w-screen hidden">
+        <div
+          id="backdrop"
+          class="fixed left-0 top-0 z-30 hidden h-screen w-screen"
+        >
         </div>
       </header>
     </div>
-    <!-- header end -->
 
     <div class="relative mx-auto w-full max-w-screen-2xl flex-auto px-4">
       <slot />
@@ -119,11 +121,9 @@ const props = Astro.props;
 
   function backdropCloseToggle() {
     if (!headerLinksOpened) {
-      console.log("adding event");
       backdrop.addEventListener("click", headerLinksToggleEvent);
       headerLinksOpened = true;
     } else {
-      console.log("removing event");
       backdrop.removeEventListener("click", headerLinksToggleEvent);
       headerLinksOpened = false;
     }

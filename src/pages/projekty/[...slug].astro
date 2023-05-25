@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import LayoutSK from "../../layouts/LayoutSK.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects-sk");
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<LayoutSK>
+  <div class="mx-auto max-w-5xl pt-8">
+    <Content />
+  </div>
+</LayoutSK>
