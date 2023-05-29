@@ -2,7 +2,7 @@
 export interface Props {
   models: {
     href: string;
-    positions: number[];
+    position: number[];
   }[];
   camera: {
     position: number[];
@@ -18,28 +18,42 @@ const props = Astro.props;
 <canvas
   class="three-dee-canvas"
   data-models={props.models.map((m) => m.href).join(" ")}
-  data-model-positions={props.models
-    .map((m) => m.positions.join(" "))
-    .join("-")}
+  data-models-position={props.models.map((m) => m.position.join(" ")).join("-")}
   data-camera-position={props.camera.position.join(" ")}
+  width="500"
+  height="300"
 >
 </canvas>
 
 <script>
   import * as THREE from "three";
 
+  import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
   class ThreeDeeView {
     scene: THREE.Scene;
     renderer: THREE.WebGLRenderer;
     camera: THREE.PerspectiveCamera;
+    models: THREE.Group[] = [];
 
     constructor(canvas: HTMLCanvasElement) {
       this.scene = new THREE.Scene();
-      this.camera = new THREE.PerspectiveCamera();
+      this.camera = new THREE.PerspectiveCamera(
+        75,
+        canvas.width / canvas.height,
+        0.001,
+        1000
+      );
+
+      const light = new THREE.AmbientLight();
+
+      this.scene.add(light);
 
       this.parseDataset(canvas);
 
       this.renderer = new THREE.WebGLRenderer({ canvas: canvas });
+      this.renderer.setSize(canvas.width, canvas.height);
       this.renderer.render(this.scene, this.camera);
     }
 
@@ -51,16 +65,36 @@ const props = Astro.props;
 
     private parseCamera(canvas: HTMLCanvasElement) {
       this.camera.position.copy(
-        this.parsePositions(canvas.dataset.cameraPosition!)
+        this.parsePosition(canvas.dataset.cameraPosition!)
       );
     }
 
-    private parseModels(canvas: HTMLCanvasElement) {}
+    private parseModels(canvas: HTMLCanvasElement) {
+      const positions = canvas.dataset
+        .modelsPosition!.split("-")
+        .map((p) => this.parsePosition(p));
 
-    private parsePositions(position: string) {
+      const loader = new GLTFLoader();
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath("/gltf/");
+      dracoLoader.preload();
+      loader.setDRACOLoader(dracoLoader);
+
+      canvas.dataset.models!.split(" ").forEach((model, index) => {
+        loader.load(model, (gltf) => {
+          gltf.scene.position.copy(positions[index]);
+          gltf.scene.scale.set(1, 1, 1);
+          this.models.push(gltf.scene);
+          this.scene.add(gltf.scene);
+        });
+      });
+    }
+
+    /** Expects position in format "x y z" */
+    private parsePosition(position: string) {
       const xyzStr = position.split(" ");
-      const cordinates = xyzStr.map((cordinate) => parseInt(cordinate, 10));
-      return new THREE.Vector3(cordinates[0], cordinates[1], cordinates[2]);
+      const coordinates = xyzStr.map((coordinate) => parseInt(coordinate, 10));
+      return new THREE.Vector3(coordinates[0], coordinates[1], coordinates[2]);
     }
   }
 
