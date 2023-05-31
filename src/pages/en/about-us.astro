@@ -1,7 +1,41 @@
 ---
+import About from "../../components/About.astro";
 import LayoutEN from "../../layouts/LayoutEN.astro";
-
 ---
 
-<LayoutEN></LayoutEN>
-
+<LayoutEN>
+  <About
+    heading="About us"
+    description="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
+    introduction="what would i tell you about myself outside of work?"
+    people={[
+      {
+        name: "Marcel",
+        heading: "FULLSTACK DEVELOPER & CO-FOUNDER",
+        description:
+          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        about:
+          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        models: ["/kozmonaut.glb", "/raketa.glb"],
+      },
+      {
+        name: "Gabriel",
+        heading: "GRAPHIC DESIGNER & CO-FOUNDER",
+        description:
+          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        about:
+          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        models: ["/kozmonaut.glb", "/raketa.glb"],
+      },
+      {
+        name: "Richard",
+        heading: "FRONTEND DEVELOPER",
+        description:
+          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        about:
+          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        models: ["/kozmonaut.glb", "/raketa.glb"],
+      },
+    ]}
+  />
+</LayoutEN>
