@@ -26,32 +26,34 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<canvas
-  class:list={["three-dee-canvas bg-transparent", props.class]}
-  data-models={props.models.map((m) => m.href).join(" ")}
-  data-models-position={props.models.map((m) => m.position.join(" ")).join("-")}
-  data-models-animation-enabled={props.models
-    .map((m) => m.animationEnabled)
-    .join(" ")}
-  data-models-animation-amplitude={props.models
-    .map((m) => m.animationAmplitude)
-    .join(" ")}
-  data-models-animation-duration={props.models
-    .map((m) => m.animationDuration)
-    .join(" ")}
-  data-camera-position={props.camera.position.join(" ")}
-  data-camera-fov={props.camera.fov}
-  data-camera-far={props.camera.far}
-  data-camera-near={props.camera.near}
-  data-light-position={props.light.position.join(" ")}
-  data-light-distance={props.light.distance}
-  data-light-intensity={props.light.intensity}
-  data-light-decay={props.light.decay}
-  data-light-color={props.light.color}
-  width="500"
-  height="300"
->
-</canvas>
+<div class:list={["h-full w-full", props.class]}>
+  <canvas
+    class="three-dee-canvas bg-transparent"
+    data-models={props.models.map((m) => m.href).join(" ")}
+    data-models-position={props.models
+      .map((m) => m.position.join(" "))
+      .join("-")}
+    data-models-animation-enabled={props.models
+      .map((m) => m.animationEnabled)
+      .join(" ")}
+    data-models-animation-amplitude={props.models
+      .map((m) => m.animationAmplitude)
+      .join(" ")}
+    data-models-animation-duration={props.models
+      .map((m) => m.animationDuration)
+      .join(" ")}
+    data-camera-position={props.camera.position.join(" ")}
+    data-camera-fov={props.camera.fov}
+    data-camera-far={props.camera.far}
+    data-camera-near={props.camera.near}
+    data-light-position={props.light.position.join(" ")}
+    data-light-distance={props.light.distance}
+    data-light-intensity={props.light.intensity}
+    data-light-decay={props.light.decay}
+    data-light-color={props.light.color}
+  >
+  </canvas>
+</div>
 
 <script>
   import * as THREE from "three";
@@ -106,7 +108,7 @@ const props = Astro.props;
 
       const amplitudes = data
         .modelsAnimationAmplitude!.split(" ")
-        .map((s) => this.parseNum(s, 0.5));
+        .map((s) => this.parseNum(s, 0.2));
 
       const durations = data
         .modelsAnimationDuration!.split(" ")
@@ -130,6 +132,20 @@ const props = Astro.props;
         antialias: true,
       });
       this.renderer.setSize(canvas.width, canvas.height);
+
+      window.addEventListener("resize", this.resizeCanvas.bind(this));
+      this.resizeCanvas();
+    }
+
+    private resizeCanvas() {
+      const canvas = this.renderer.domElement;
+      const container = canvas.parentNode!;
+
+      // @ts-ignore
+      this.renderer.setSize(container.clientWidth, container.clientHeight);
+
+      this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      this.camera.updateProjectionMatrix();
     }
 
     static async createAsync(canvas: HTMLCanvasElement) {

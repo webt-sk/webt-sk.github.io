@@ -1,23 +1,96 @@
 ---
 import ThreeDee from "./ThreeDee.astro";
+
+export interface Props {
+  people: {
+    name: string;
+    heading: string;
+    description: string;
+    about: string;
+    models: [string, string];
+  }[];
+  heading: string;
+  description: string;
+  introduction: string;
+}
+
+const props = Astro.props;
 ---
 
-<main>
-  <ThreeDee
-    models={[
-      { href: "/kozmonaut.glb", position: [0, 0, 0], animationEnabled: false },
-      { href: "/raketa.glb", position: [0, 0, 0] },
-    ]}
-    camera={{ position: [0, 0, 4], fov: 75 }}
-    light={{
-      position: [0, 0, 5],
-    }}
-  />
-  <ThreeDee
-    models={[{ href: "/kozmonaut.glb", position: [0, 0, 0] }]}
-    camera={{ position: [0, 0, 5], fov: 70 }}
-    light={{
-      position: [0, 0, 5],
-    }}
-  />
+<main class="flex flex-col gap-12 pb-12">
+  <div
+    class="flex h-screen flex-col items-center justify-center py-12 text-center"
+  >
+    <h1 class="text-5xl font-bold text-ruzova lg:text-7xl">
+      {props.heading}
+    </h1>
+    <ThreeDee
+      class="flex-auto"
+      models={[
+        {
+          href: "/kozmonaut.glb",
+          position: [0, 0, 0],
+        },
+        {
+          href: "/raketa.glb",
+          position: [0, 0, 0],
+        },
+      ]}
+      camera={{
+        position: [0, 1, 6],
+      }}
+      light={{
+        position: [0, 1, 1],
+      }}
+    />
+    <p class="max-w-md lg:max-w-screen-md lg:text-lg">
+      {props.description}
+    </p>
+  </div>
+  {
+    props.people.map((person) => (
+      <section class="mx-auto grid max-w-md grid-cols-1 lg:max-w-screen-lg lg:grid-cols-2 2xl:max-w-none">
+        <div>
+          <h2 class="mb-0.5 text-4xl font-bold text-ruzova">{person.name}</h2>
+          <h3 class="mb-2 text-2xl italic text-zelena">{person.heading}</h3>
+          <p>{person.description}</p>
+        </div>
+        <ThreeDee
+          class="order-4 lg:order-none"
+          models={[
+            {
+              href: "/kozmonaut.glb",
+              position: [0, 0, 0],
+            },
+          ]}
+          camera={{
+            position: [0, 0.5, 4],
+          }}
+          light={{
+            position: [0, 1, 1],
+          }}
+        />
+        <ThreeDee
+          models={[
+            {
+              href: "/kozmonaut.glb",
+              position: [0, 0, 0],
+            },
+          ]}
+          camera={{
+            position: [0, 0.5, 4],
+          }}
+          light={{
+            position: [0, 1, 1],
+          }}
+        />
+        <div>
+          <h4 class="mb-1 text-right text-xl italic text-zelena">
+            {props.introduction}
+          </h4>
+          <p class="text-right">{person.about}</p>
+        </div>
+      </section>
+    ))
+  }
 </main>

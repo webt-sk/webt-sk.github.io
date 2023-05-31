@@ -159,11 +159,15 @@ const props = Astro.props;
     }
   }
 
-  window.onscroll = () => {
+  function checkScroll() {
     if (window.scrollY === 0) {
       headerEffectsScrolled(false);
     } else {
       headerEffectsScrolled(true);
     }
-  };
+  }
+
+  window.onscroll = checkScroll;
+
+  checkScroll()
 </script>
