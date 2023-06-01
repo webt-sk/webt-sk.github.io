@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+
+export interface Props {
+  showMoreText: string;
+  collection: "blog-en" | "blog-sk";
+}
+
+const props = Astro.props;
+const posts = await getCollection(props.collection);
+---
+
+<main
+  class="mx-auto grid max-w-sm grid-cols-1 place-items-center gap-5 py-10 md:max-w-4xl md:gap-8 md:px-8 xl:max-w-5xl 2xl:gap-10 2xl:px-0"
+>
+  {
+    posts.map((post) => (
+      <a
+        href={`/${props.collection === "blog-en" ? "en/blog" : "blog"}/${
+          post.slug
+        }`}
+        class="group w-full"
+      >
+        <article class="w-full gap-8 md:flex">
+          <div class="relative max-w-sm md:w-1/2">
+            <img
+              class="w-full"
+              src={post.data.thumbnail}
+              alt={post.data.title}
+            />
+            <div class="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <span class="text-center text-xl font-bold shadow-lg">
+                {props.showMoreText}
+              </span>
+            </div>
+          </div>
+          <div class="py-2 md:w-1/2">
+            <h2 class="text-xl font-bold text-ruzova transition-colors group-hover:text-zelena">
+              {post.data.title}
+            </h2>
+            <p class="text-slate-300">{post.data.description}</p>
+          </div>
+        </article>
+      </a>
+    ))
+  }
+</main>

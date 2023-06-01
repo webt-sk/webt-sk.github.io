@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 export interface Props {
   showMoreText: string;
-  collection: "blog-en" | "blog-sk" | "projects-sk" | "projects-en";
+  collection: "projects-sk" | "projects-en";
 }
 
 const props = Astro.props;
@@ -15,7 +15,12 @@ const projects = await getCollection(props.collection);
 >
   {
     projects.map((project) => (
-      <a href={`/projekty/${project.slug}`} class="group">
+      <a
+        href={`/${
+          props.collection === "projects-en" ? "en/projects" : "projekty"
+        }/${project.slug}`}
+        class="group"
+      >
         <article>
           <div class="relative">
             <img
