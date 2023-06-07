@@ -1,0 +1,78 @@
+<main class="text-center lg:text-left">
+  <section class="flex min-h-screen flex-col pt-24 lg:justify-center lg:pt-0">
+    <div>
+      <h1
+        class="mb-4 inline-block bg-gradient-to-br from-zelena to-ruzova bg-clip-text text-5xl font-bold text-transparent xl:text-8xl"
+      >
+        Sme webTool
+      </h1>
+      <p class="mb-4 text-xl xl:text-4xl">
+        Digitálna agentúra, ktorá Vás<br />
+        ukáže svetu prostredníctvom webu
+      </p>
+      <p class="text-xl italic text-zelena xl:text-2xl">
+        Vytvárame vaše web, eshopy či aplikácie
+      </p>
+    </div>
+    <canvas id="three-dee-home" class="absolute left-0 top-0 -z-10"></canvas>
+  </section>
+</main>
+
+<script>
+  import * as THREE from "three";
+  import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
+  const MAX_X = 100;
+  const MIN_X = -100;
+  const MAX_Y = 45;
+  const MIN_Y = -45;
+  const MAX_Z = -50;
+  const MIN_Z = -130;
+  const MOUSE_SENSITIVITY = 0.00002;
+
+  const canvas: HTMLCanvasElement = document.querySelector("#three-dee-home")!;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, canvas.width / canvas.height);
+  const light = new THREE.AmbientLight();
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: true,
+  });
+  scene.add(light);
+
+  for (let i = 0; i < 700; i++) {
+    const geometry = new THREE.SphereGeometry(0.1, 16, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0xfefeff });
+    const star = new THREE.Mesh(geometry, material);
+
+    star.position.x = Math.random() * (MAX_X - MIN_X) + MIN_X;
+    star.position.y = Math.random() * (MAX_Y - MIN_Y) + MIN_Y;
+    star.position.z = Math.random() * (MAX_Z - MIN_Z) + MIN_Z;
+
+    scene.add(star);
+  }
+
+  function resize() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = canvas.width / canvas.height;
+  }
+
+  window.addEventListener("resize", resize);
+
+  document.addEventListener("mousemove", (event) => {
+    const deltaX = event.movementX || 0;
+    const deltaY = event.movementY || 0;
+
+    scene.rotation.y -= deltaX * MOUSE_SENSITIVITY;
+    scene.rotation.x -= deltaY * MOUSE_SENSITIVITY;
+  });
+
+  function animate() {
+    window.requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  }
+
+  resize();
+  animate();
+</script>

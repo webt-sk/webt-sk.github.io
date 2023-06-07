@@ -1,9 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+export interface Props {
+  headerPosition?: "fixed" | "sticky";
+}
+
+const props = Astro.props;
 ---
 
 <Layout
   lang="en"
+  headerPosition={props.headerPosition}
   links={[
     {
       name: "Home",
