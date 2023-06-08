@@ -26,7 +26,7 @@ const props = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body
-    class="flex min-h-screen flex-col bg-pozadie text-white selection:bg-teal-200 selection:bg-opacity-40"
+    class="relative flex min-h-screen flex-col bg-black text-white selection:bg-teal-200 selection:bg-opacity-40"
   >
     <div
       id="header-container"
@@ -50,7 +50,7 @@ const props = Astro.props;
 
         <div
           id="header-links"
-          class="fixed right-0 top-0 z-40 hidden h-screen w-full max-w-[200px] border-l border-slate-800 bg-pozadie2 text-white sm:min-w-0 md:static md:block md:h-full md:max-w-fit md:border-transparent md:bg-transparent"
+          class="fixed right-0 top-0 z-40 hidden h-screen w-full max-w-[200px] border-l border-neutral-800 bg-neutral-950 bg-opacity-90 text-white sm:min-w-0 md:static md:block md:h-full md:max-w-fit md:border-transparent md:bg-transparent"
         >
           <nav
             class="mt-24 flex flex-col gap-2 px-5 text-lg md:mt-0 md:flex-row md:gap-7 lg:gap-12"
@@ -75,9 +75,9 @@ const props = Astro.props;
     <div class="mx-auto w-full max-w-screen-2xl flex-auto px-4">
       <slot />
     </div>
-    <div class="mt-auto w-screen border-t border-t-slate-800 bg-pozadie2">
+    <div class="mt-auto w-screen border-t border-t-neutral-800 bg-neutral-950">
       <footer
-        class="mx-auto flex w-full max-w-screen-2xl flex-wrap justify-evenly gap-4 bg-pozadie2 p-3 pt-5 sm:gap-7 md:p-4 lg:gap-16 lg:px-4"
+        class="mx-auto flex w-full max-w-screen-2xl flex-wrap justify-evenly gap-4 p-3 pt-5 sm:gap-7 md:p-4 lg:gap-16 lg:px-4"
       >
         <div class="mb-3 w-full sm:mb-0 md:w-fit md:flex-auto">
           <a
@@ -114,6 +114,7 @@ const props = Astro.props;
         </div>
       </footer>
     </div>
+    <canvas id="three-dee-home" class="fixed left-0 top-0 -z-50"></canvas>
   </body>
 </html>
 
@@ -137,7 +138,7 @@ const props = Astro.props;
 
   function headerLinksToggle(force?: boolean) {
     headerLinks.classList.toggle("hidden", force);
-    backdrop.classList.toggle("backdrop-blur", force);
+    backdrop.classList.toggle("backdrop-blur-sm", force);
     backdrop.classList.toggle("hidden", force);
     backdropCloseToggle();
   }
@@ -176,4 +177,105 @@ const props = Astro.props;
   window.onscroll = checkScroll;
 
   checkScroll();
+</script>
+
+<script>
+  import * as THREE from "three";
+
+  const STARS_COUNT = 800;
+  const STARS_SPEED = 0.02;
+
+  const STAR_MAX_X = 100;
+  const STAR_MIN_X = -100;
+  const STAR_MAX_Y = 45;
+  const STAR_MIN_Y = -45;
+  const STAR_MAX_Z = -50;
+  const STAR_MIN_Z = -160;
+
+  const MOUSE_SENSITIVITY = 0.00001;
+
+  const canvas: HTMLCanvasElement = document.querySelector("#three-dee-home")!;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, canvas.width / canvas.height);
+  const light = new THREE.PointLight(0xffffff, 1, 0, 2);
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: true,
+  });
+  scene.add(light);
+
+  const starGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+  const starMaterials = [
+    new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xdeecfc,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xd5dff2,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xf4eede,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xfcfbf7,
+    }),
+  ];
+
+  const stars = Array<THREE.Mesh>(STARS_COUNT);
+
+  for (let i = 0; i < STARS_COUNT; i++) {
+    stars[i] = createStar();
+  }
+
+  function createStar() {
+    const star = new THREE.Mesh(starGeometry);
+
+    generateStarProps(star);
+
+    scene.add(star);
+    return star;
+  }
+
+  function generateStarProps(star: THREE.Mesh, forceMaxZ = 0) {
+    const randomMaterial = Math.floor(Math.random() * starMaterials.length);
+    star.material = starMaterials[randomMaterial];
+    star.position.x = Math.random() * (STAR_MAX_X - STAR_MIN_X) + STAR_MIN_X;
+    star.position.y = Math.random() * (STAR_MAX_Y - STAR_MIN_Y) + STAR_MIN_Y;
+    star.position.z =
+      Math.random() * (STAR_MAX_Z + forceMaxZ - STAR_MIN_Z) + STAR_MIN_Z;
+  }
+
+  function resize() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = canvas.width / canvas.height;
+    camera.updateProjectionMatrix();
+  }
+
+  window.addEventListener("resize", resize);
+
+  document.addEventListener("mousemove", (event) => {
+    const deltaX = event.movementX || 0;
+    const deltaY = event.movementY || 0;
+
+    scene.rotation.y -= deltaX * MOUSE_SENSITIVITY;
+    scene.rotation.x -= deltaY * MOUSE_SENSITIVITY;
+  });
+
+  function animate() {
+    window.requestAnimationFrame(animate);
+
+    for (let i = 0; i < STARS_COUNT; i++) {
+      stars[i].position.z += STARS_SPEED;
+      if (stars[i].position.z > STAR_MAX_Z) {
+        generateStarProps(stars[i]);
+      }
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  resize();
+  animate();
 </script>

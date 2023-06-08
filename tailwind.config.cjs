@@ -5,9 +5,7 @@ module.exports = {
     extend: {
       colors: {
         zelena: "#27FFBE",
-        ruzova: "#C07CD1",
-        pozadie: "#0B0C16",
-        pozadie2: "#020C20",
+        ruzova: "#cd75ea",
         "dynamic-shadow": "var(--dynamic-shadow-color)",
       },
       boxShadow: {
