@@ -187,10 +187,16 @@ const props = Astro.props;
 
   const STAR_MAX_X = 100;
   const STAR_MIN_X = -100;
-  const STAR_MAX_Y = 45;
-  const STAR_MIN_Y = -45;
+  const STAR_MAX_Y = 48;
+  const STAR_MIN_Y = -48;
   const STAR_MAX_Z = -50;
   const STAR_MIN_Z = -160;
+
+  const STAR_SCALE_MIN = 0.9;
+  const STAR_SCALE_MAX = 1.2;
+
+  const STAR_OPACITY_SPEED = 0.01;
+  const STAR_OPACITY_HIDE_DISTANCE = 1.3;
 
   const MOUSE_SENSITIVITY = 0.00001;
 
@@ -208,18 +214,28 @@ const props = Astro.props;
   const starMaterials = [
     new THREE.MeshBasicMaterial({
       color: 0xffffff,
+      opacity: 0,
+      transparent: true,
     }),
     new THREE.MeshBasicMaterial({
       color: 0xdeecfc,
+      opacity: 0,
+      transparent: true,
     }),
     new THREE.MeshBasicMaterial({
       color: 0xd5dff2,
+      opacity: 0,
+      transparent: true,
     }),
     new THREE.MeshBasicMaterial({
       color: 0xf4eede,
+      opacity: 0,
+      transparent: true,
     }),
     new THREE.MeshBasicMaterial({
       color: 0xfcfbf7,
+      opacity: 0,
+      transparent: true,
     }),
   ];
 
@@ -240,11 +256,16 @@ const props = Astro.props;
 
   function generateStarProps(star: THREE.Mesh, forceMaxZ = 0) {
     const randomMaterial = Math.floor(Math.random() * starMaterials.length);
-    star.material = starMaterials[randomMaterial];
+    star.material = starMaterials[randomMaterial].clone();
     star.position.x = Math.random() * (STAR_MAX_X - STAR_MIN_X) + STAR_MIN_X;
     star.position.y = Math.random() * (STAR_MAX_Y - STAR_MIN_Y) + STAR_MIN_Y;
     star.position.z =
       Math.random() * (STAR_MAX_Z + forceMaxZ - STAR_MIN_Z) + STAR_MIN_Z;
+    const scale =
+      Math.random() * (STAR_SCALE_MAX - STAR_SCALE_MIN) + STAR_SCALE_MIN;
+    star.scale.set(scale, scale, scale);
+
+    console.log(star.position.z);
   }
 
   function resize() {
@@ -268,8 +289,20 @@ const props = Astro.props;
 
     for (let i = 0; i < STARS_COUNT; i++) {
       stars[i].position.z += STARS_SPEED;
+
+      // @ts-ignore
+      if (stars[i].material.opacity < 1) {
+        // @ts-ignore
+        stars[i].material.opacity += STAR_OPACITY_SPEED / 2;
+      }
+
+      if (stars[i].position.z > STAR_MAX_Z * STAR_OPACITY_HIDE_DISTANCE) {
+        // @ts-ignore
+        stars[i].material.opacity -= STAR_OPACITY_SPEED;
+      }
+
       if (stars[i].position.z > STAR_MAX_Z) {
-        generateStarProps(stars[i]);
+        generateStarProps(stars[i], -90);
       }
     }
 

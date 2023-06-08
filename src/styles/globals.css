@@ -8,6 +8,6 @@
   }
 
   .header-scroll-effects {
-    @apply !border-b-neutral-800 bg-neutral-950 bg-opacity-80 backdrop-blur
+    @apply !border-b-neutral-800 bg-neutral-950 bg-opacity-[85%] backdrop-blur;
   }
 }
