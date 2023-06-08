@@ -21,41 +21,77 @@
 <script>
   import * as THREE from "three";
   import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-  const MAX_X = 100;
-  const MIN_X = -100;
-  const MAX_Y = 45;
-  const MIN_Y = -45;
-  const MAX_Z = -50;
-  const MIN_Z = -130;
-  const MOUSE_SENSITIVITY = 0.00002;
+  const STARS_COUNT = 800;
+  const STARS_SPEED = 0.02;
+
+  const STAR_MAX_X = 100;
+  const STAR_MIN_X = -100;
+  const STAR_MAX_Y = 45;
+  const STAR_MIN_Y = -45;
+  const STAR_MAX_Z = -50;
+  const STAR_MIN_Z = -160;
+
+  const MOUSE_SENSITIVITY = 0.00001;
 
   const canvas: HTMLCanvasElement = document.querySelector("#three-dee-home")!;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, canvas.width / canvas.height);
-  const light = new THREE.AmbientLight();
+  const light = new THREE.PointLight(0xffffff, 1, 0, 2);
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true,
   });
   scene.add(light);
 
-  for (let i = 0; i < 700; i++) {
-    const geometry = new THREE.SphereGeometry(0.1, 16, 16);
-    const material = new THREE.MeshBasicMaterial({ color: 0xfefeff });
-    const star = new THREE.Mesh(geometry, material);
+  const starGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+  const starMaterials = [
+    new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xdeecfc,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xd5dff2,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xf4eede,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xfcfbf7,
+    }),
+  ];
 
-    star.position.x = Math.random() * (MAX_X - MIN_X) + MIN_X;
-    star.position.y = Math.random() * (MAX_Y - MIN_Y) + MIN_Y;
-    star.position.z = Math.random() * (MAX_Z - MIN_Z) + MIN_Z;
+  const stars = Array<THREE.Mesh>(STARS_COUNT);
+
+  for (let i = 0; i < STARS_COUNT; i++) {
+    stars[i] = createStar();
+  }
+
+  function createStar() {
+    const star = new THREE.Mesh(starGeometry);
+
+    generateStarProps(star);
 
     scene.add(star);
+    return star;
+  }
+
+  function generateStarProps(star: THREE.Mesh, forceMaxZ = 0) {
+    const randomMaterial = Math.floor(Math.random() * starMaterials.length);
+    star.material = starMaterials[randomMaterial];
+    star.position.x = Math.random() * (STAR_MAX_X - STAR_MIN_X) + STAR_MIN_X;
+    star.position.y = Math.random() * (STAR_MAX_Y - STAR_MIN_Y) + STAR_MIN_Y;
+    star.position.z =
+      Math.random() * (STAR_MAX_Z + forceMaxZ - STAR_MIN_Z) + STAR_MIN_Z;
   }
 
   function resize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = canvas.width / canvas.height;
+    camera.updateProjectionMatrix();
   }
 
   window.addEventListener("resize", resize);
@@ -70,6 +106,14 @@
 
   function animate() {
     window.requestAnimationFrame(animate);
+
+    for (let i = 0; i < STARS_COUNT; i++) {
+      stars[i].position.z += STARS_SPEED;
+      if (stars[i].position.z > STAR_MAX_Z) {
+        generateStarProps(stars[i]);
+      }
+    }
+
     renderer.render(scene, camera);
   }
 
