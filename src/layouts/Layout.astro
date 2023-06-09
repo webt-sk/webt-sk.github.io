@@ -264,8 +264,6 @@ const props = Astro.props;
     const scale =
       Math.random() * (STAR_SCALE_MAX - STAR_SCALE_MIN) + STAR_SCALE_MIN;
     star.scale.set(scale, scale, scale);
-
-    console.log(star.position.z);
   }
 
   function resize() {
