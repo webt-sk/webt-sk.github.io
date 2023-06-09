@@ -10,4 +10,12 @@
   .header-scroll-effects {
     @apply !border-b-neutral-800 bg-neutral-950 bg-opacity-[85%] backdrop-blur;
   }
+
+  .table-post td {
+    @apply pr-10 text-base;
+  }
+
+  .table-post td:first-child {
+    @apply font-bold;
+  }
 }

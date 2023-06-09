@@ -3,17 +3,20 @@ export interface Props {
   name: string;
   color: string;
   size: number;
+  href: string;
 }
 
 const props = Astro.props;
 ---
 
-<div class="group flex w-fit flex-col items-center gap-2">
+<a href={props.href} class="group flex w-fit flex-col items-center gap-2">
   <div
     class="after:bg-dynamic relative saturate-50 transition-all duration-300 after:absolute after:left-1/2 after:top-1/2 after:-z-10 after:-translate-x-1/2 after:-translate-y-1/2 after:transition-shadow group-hover:saturate-100 after:group-hover:shadow-dynamic"
-    style={`--dynamic-shadow: 0 0px ${props.size}px ${props.size * 0.6}px ${props.color}`}
+    style={`--dynamic-shadow: 0 0px ${props.size}px ${props.size * 0.6}px ${
+      props.color
+    }`}
   >
     <slot />
   </div>
   <p class="font-bold text-white">{props.name}</p>
-</div>
+</a>
