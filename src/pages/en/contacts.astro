@@ -4,5 +4,17 @@ import Contacts from "../../components/Contacts.astro";
 ---
 
 <LayoutEN>
-  <Contacts heading="CONTACTS" text="They are here whole time :)" />
+  <Contacts
+    heading="CONTACTS"
+    text="They are here whole time :)"
+    form={{
+      send: "Send",
+      name: "Name",
+      message: "Message...",
+    }}
+    homeUrl="/"
+    homeText="Home"
+    okMsg="Thanks for your message,<br /> we will respond as soon as we can."
+    notOkMsg="Something went wrong, try again later."
+  />
 </LayoutEN>

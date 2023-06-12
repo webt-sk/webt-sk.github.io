@@ -4,5 +4,17 @@ import LayoutSK from "../layouts/LayoutSK.astro";
 ---
 
 <LayoutSK>
-  <Contacts heading="KONTAKTY" text="Sú tu celý čas :)" />
+  <Contacts
+    heading="KONTAKTY"
+    text="Sú tu celý čas :)"
+    form={{
+      send: "Odoslať",
+      name: "Meno",
+      message: "Správa...",
+    }}
+    homeUrl="/"
+    homeText="Úvod"
+    okMsg="Ďakujeme za vašu správu,<br /> odpovieme Vám čo najskôr."
+    notOkMsg="Niečo sa rozbilo, skúste to znova neskôr."
+  />
 </LayoutSK>

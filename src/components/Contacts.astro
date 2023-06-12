@@ -1,27 +1,38 @@
 ---
+import Icon from "astro-icon";
+
 export interface Props {
   heading: string;
   text: string;
+  form: {
+    send: string;
+    name: string;
+    message: string;
+  };
+  homeUrl: string;
+  homeText: string;
+  okMsg: string;
+  notOkMsg: string;
 }
 
 const props = Astro.props;
 ---
 
 <main
-  class="pointer-events-none absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-5 overflow-hidden"
+  class="pointer-events-none flex h-full w-full flex-auto flex-col items-center justify-center gap-5 overflow-hidden"
 >
   <h1 class="text-center text-6xl font-bold text-ruzova md:text-9xl">
     {props.heading}
   </h1>
-  <div>
-    <p class="mb-12 text-center text-xl">{props.text}</p>
+  <div class="relative mb-12">
+    <p class="mb-12 hidden text-center text-xl sm:block">{props.text}</p>
     <svg
       viewBox="0 0 232.40108 210.71149"
       version="1.1"
       id="svg5"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
-      class="relative left-full w-60 rotate-45 md:w-64 md:rotate-12 xl:-top-5 xl:w-72 2xl:top-0 2xl:w-80"
+      class="absolute left-full hidden w-72 rotate-[25deg] sm:block md:w-80 md:rotate-12 2xl:w-96"
     >
       <defs id="defs2"></defs>
       <g
@@ -48,4 +59,102 @@ const props = Astro.props;
       </g>
     </svg>
   </div>
+  <form class="pointer-events-auto flex flex-col items-center gap-5">
+    <input
+      class="border-b border-zelena bg-neutral-900 bg-opacity-75 px-1 py-1 text-xl hover:bg-opacity-100 focus:bg-opacity-100 focus-visible:outline-2 focus-visible:outline-ruzova"
+      type="text"
+      name="name"
+      placeholder={props.form.name}
+    />
+    <input
+      class="border-b border-zelena bg-neutral-900 bg-opacity-75 px-1 py-1 text-xl hover:bg-opacity-100 focus:bg-opacity-100 focus-visible:outline-2 focus-visible:outline-ruzova"
+      type="email"
+      name="email"
+      placeholder="Email"
+    />
+    <textarea
+      class="border-b border-zelena bg-neutral-900 bg-opacity-75 px-1 py-1 text-xl hover:bg-opacity-100 focus:bg-opacity-100 focus-visible:outline-2 focus-visible:outline-ruzova"
+      name="message"
+      placeholder={props.form.message}
+      rows="4"></textarea>
+    <input
+      class="cursor-pointer rounded-xl bg-ruzova px-4 py-1 text-xl"
+      type="submit"
+      value={props.form.send}
+    />
+  </form>
+  <svg
+    id="spinner"
+    class="hidden"
+    xmlns="http://www.w3.org/2000/svg"
+    width="60"
+    height="60"
+    viewBox="0 0 24 24"
+    ><path
+      fill="currentColor"
+      d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+      ><animateTransform
+        attributeName="transform"
+        dur="0.75s"
+        repeatCount="indefinite"
+        type="rotate"
+        values="0 12 12;360 12 12"></animateTransform></path
+    ></svg
+  >
+  <p
+    id="response"
+    class="hidden text-center text-xl text-zelena"
+    data-ok={props.okMsg}
+    data-not-ok={props.notOkMsg}
+  >
+  </p>
+  <a
+    id="link-home"
+    class="pointer-events-auto hidden rounded-xl bg-ruzova px-4 py-1 text-lg font-bold"
+    href={props.homeUrl}>{props.homeText}</a
+  >
 </main>
+
+<script>
+  const form = document.querySelector("form")!;
+  const spinner = document.querySelector("#spinner")!;
+  const responseParagraph: HTMLElement = document.querySelector("#response")!;
+  const linkHome = document.querySelector("#link-home")!;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    try {
+      const req = fetch("https://form.webt.sk", {
+        method: "POST",
+        body: JSON.stringify({
+          // @ts-ignore
+          name: form.elements.namedItem("name")?.value,
+          // @ts-ignore
+          email: form.elements.namedItem("email")?.value,
+          // @ts-ignore
+          message: form.elements.namedItem("message")?.value,
+        }),
+      });
+
+      spinner.classList.toggle("hidden");
+      form.classList.toggle("hidden");
+
+      const res = await req;
+
+      if (res.ok) {
+        spinner.classList.toggle("hidden");
+        linkHome.classList.toggle("hidden");
+        responseParagraph.innerHTML = responseParagraph.dataset.ok!;
+        responseParagraph.classList.toggle("hidden");
+      } else {
+        throw "Not ok";
+      }
+    } catch (e) {
+      spinner.classList.toggle("hidden");
+      linkHome.classList.toggle("hidden");
+      responseParagraph.innerHTML = responseParagraph.dataset.notOk!;
+      responseParagraph.style.color = "#ef4444";
+      responseParagraph.classList.toggle("hidden");
+    }
+  });
+</script>
