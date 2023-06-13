@@ -4,5 +4,52 @@ import LayoutSK from "../layouts/LayoutSK.astro";
 ---
 
 <LayoutSK headerPosition="fixed">
-  <Home />
+  <Home
+    heading="Sme webTool"
+    description2="Vytvárame vaše web, eshopy či aplikácie"
+    freeWeb="Web zdarma?"
+    scrollDown="Scrolluj dole"
+    ourServices="Naše služby"
+    whatDoWeOffer="ČO PONÚKAME?"
+    whatDoWeOfferDesc="Pomáhame značkám, prinášame ambiciózne nápady, a to všetko pri zachovaní jednoduchosti, estetickosti a praktickosti."
+    cards={[
+      {
+        heading: "Marketing",
+        description:
+          "Náš tím markeťákov Vám nastaví a prispôsobí Váš web pre čo najlepšie konverzie.",
+        services: [
+          "Content research",
+          "Web marketing",
+          "Seo optimization",
+          "Storytelling",
+        ],
+      },
+      {
+        heading: "Digital Design",
+        description:
+          "Vytvoríme pútavý a zaujímavý dizajn. Prispôsobíme ho vám a vašim požiadavkám.",
+        services: [
+          "Branding",
+          "UI/UX Design",
+          "Visual design",
+          "Prototyping and testing",
+        ],
+      },
+      {
+        heading: "Development",
+        description:
+          "Všetko naprogramujeme a vytvoríme. Neexistuje problém, ktorý nevyriešime.",
+        services: [
+          "Web development",
+          "Web optimization",
+          "Eshop, app development",
+          "Support & management",
+        ],
+      },
+    ]}
+  >
+    <span slot="description"
+      >Digitálna agentúra, ktorá Vás<br />ukáže svetu prostredníctvom webu</span
+    >
+  </Home>
 </LayoutSK>
