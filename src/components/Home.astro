@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon";
-
+import ThreeDee from "./ThreeDee.astro";
 export interface Props {
   heading: string;
   description2: string;
@@ -29,7 +29,9 @@ const props = Astro.props;
 ---
 
 <main class="w-full scroll-smooth text-center lg:text-left">
-  <section class="flex min-h-screen flex-col pt-24 lg:justify-center lg:pt-0">
+  <section
+    class="grid min-h-screen grid-cols-1 place-items-center pt-24 lg:grid-cols-2 lg:pt-0"
+  >
     <div>
       <h1
         class="mb-8 mt-6 inline-block bg-gradient-to-br from-zelena to-ruzova bg-clip-text text-5xl font-bold text-transparent md:mb-10 lg:mt-0 xl:text-8xl"
@@ -63,6 +65,12 @@ const props = Astro.props;
         >
       </div>
     </div>
+    <ThreeDee
+      models={[{ href: "/kozmonaut.glb", position: [0, 0, 0], animationEnabled: false }]}
+      camera={{ position: [0, 1, 6] }}
+      light={{ position: [0, 1, 1] }}
+      mouseMove={true}
+    />
   </section>
   <section class="mb-12">
     <h2 class="mb-2 text-xl italic text-zelena">{props.whatDoWeOffer}</h2>
