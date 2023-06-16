@@ -6,7 +6,7 @@ import LayoutSK from "../layouts/LayoutSK.astro";
 <LayoutSK headerPosition="fixed">
   <Home
     heading="Sme webTool"
-    description2="Vytvárame vaše web, eshopy či aplikácie"
+    description="Vytvárame vaše web, eshopy či aplikácie"
     freeWeb="Web zdarma?"
     scrollDown="Scrolluj dole"
     ourServices="Naše služby"
@@ -61,7 +61,7 @@ import LayoutSK from "../layouts/LayoutSK.astro";
       >Digitálna agentúra, ktorá Vás<br />ukáže svetu prostredníctvom webu</span
     >
 
-    <div slot="freeWebText" class="md:text-left lg:text-xl max-w-3xl">
+    <Fragment slot="freeWebText">
       <p class="mb-4">
         Vy budete zdieľať a propagovať náš profil na instagrame, zatiaľ čo my
         budeme programovať váš web, férový obchod, no nie?.
@@ -71,6 +71,6 @@ import LayoutSK from "../layouts/LayoutSK.astro";
         ktorý je dostupný na stiahnutie.
       </p>
       <p class="mb-4">Akcia platí iba pre prvých 7 žiadajúcich.</p>
-    </div>
+    </Fragment>
   </Home>
 </LayoutSK>
