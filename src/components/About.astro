@@ -17,7 +17,7 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<main class="flex flex-col gap-12 pb-12">
+<main class="flex w-full flex-col gap-12 pb-12">
   <div
     class="flex h-screen flex-col items-center justify-center py-12 text-center"
   >
@@ -28,19 +28,26 @@ const props = Astro.props;
       class="flex-auto"
       models={[
         {
-          href: "/kozmonaut.glb",
+          href: "/models/riso.glb",
+          rotation: [0, 0, 0],
+          position: [-2, 0, 0],
+        },
+        {
+          href: "/models/gabo.glb",
+          rotation: [0, 0, 0],
           position: [0, 0, 0],
         },
         {
-          href: "/raketa.glb",
-          position: [0, 0, 0],
+          href: "/models/marcel.glb",
+          rotation: [0, 0, 0],
+          position: [2, 0, 0],
         },
       ]}
       camera={{
-        position: [0, 1, 6],
+        position: [0, 1, 5],
       }}
       light={{
-        position: [0, 1, 1],
+        position: [-3, 6, 8],
       }}
     />
     <p class="max-w-md lg:max-w-screen-md lg:text-lg">
@@ -50,41 +57,44 @@ const props = Astro.props;
   {
     props.people.map((person) => (
       <section class="mx-auto grid max-w-md grid-cols-1 lg:max-w-screen-lg lg:grid-cols-2 2xl:max-w-none">
-        <div>
+        <div class="flex flex-col justify-center">
           <h2 class="mb-0.5 text-4xl font-bold text-ruzova">{person.name}</h2>
           <h3 class="mb-2 text-2xl italic text-zelena">{person.heading}</h3>
           <p>{person.description}</p>
         </div>
         <ThreeDee
-          class="order-4 lg:order-none"
+          class="order-4 !h-96 lg:order-none"
           models={[
             {
-              href: "/kozmonaut.glb",
+              href: person.models[0],
+              rotation: [0, 0, 0],
               position: [0, 0, 0],
             },
           ]}
           camera={{
-            position: [0, 0.5, 4],
+            position: [0, 1.25, 3.55],
           }}
           light={{
-            position: [0, 1, 1],
+            position: [-1, 3, 4],
           }}
         />
         <ThreeDee
+          class="!h-72"
           models={[
             {
-              href: "/kozmonaut.glb",
+              href: person.models[1],
+              rotation: [0, 0, 0],
               position: [0, 0, 0],
             },
           ]}
           camera={{
-            position: [0, 0.5, 4],
+            position: [0, 0.1, 1.4],
           }}
           light={{
             position: [0, 1, 1],
           }}
         />
-        <div>
+        <div class="flex flex-col justify-center">
           <h4 class="mb-1 text-right text-xl italic text-zelena">
             {props.introduction}
           </h4>

@@ -3,6 +3,7 @@ export interface Props {
   models: {
     href: string;
     position: number[];
+    rotation: number[];
     animationEnabled?: boolean;
     animationAmplitude?: number;
     animationDuration?: number;
@@ -27,13 +28,16 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<div class:list={["h-full w-full", props.class]}>
+<div class:list={["h-full w-full overflow-hidden", props.class]}>
   <canvas
     class="three-dee-canvas bg-transparent"
     data-models={props.models.map((m) => m.href).join(" ")}
     data-models-position={props.models
       .map((m) => m.position.join(" "))
-      .join("-")}
+      .join("_")}
+    data-models-rotation={props.models
+      .map((m) => m.rotation?.join(" "))
+      .join("_")}
     data-models-animation-enabled={props.models
       .map((m) => m.animationEnabled)
       .join(" ")}
@@ -228,21 +232,39 @@ const props = Astro.props;
       radix?: number
     ) {
       if (str === undefined) return fallback;
-      const number = parseInt(str, radix);
+
+      if (radix !== undefined) {
+        const number = parseInt(str, radix);
+        if (isNaN(number)) return fallback;
+        return number;
+      }
+
+      const number = parseFloat(str);
       if (isNaN(number)) return fallback;
       return number;
     }
 
     private async parseModels(canvas: HTMLCanvasElement) {
       const positions = canvas.dataset
-        .modelsPosition!.split("-")
+        .modelsPosition!.split("_")
         .map((p) => this.parsePosition(p));
+
+      const rotations = canvas.dataset.modelsRotation!.split("_").map((r) => {
+        const xyzStr = r.split(" ");
+        const degs = xyzStr.map((deg) => parseFloat(deg));
+        return degs;
+      });
 
       const models = canvas.dataset.models!.split(" ");
 
       for (let i = 0; i < models.length; i++) {
         const obj = await this.loadModel(models[i]);
         obj.position.copy(positions[i]);
+        obj.rotation.set(
+          THREE.MathUtils.degToRad(rotations[i][0]),
+          THREE.MathUtils.degToRad(rotations[i][1]),
+          THREE.MathUtils.degToRad(rotations[i][2])
+        );
         this.models.push(obj);
         this.scene.add(obj);
       }
@@ -264,7 +286,7 @@ const props = Astro.props;
     /** Expects position in format "x y z" */
     private parsePosition(position: string) {
       const xyzStr = position.split(" ");
-      const coordinates = xyzStr.map((coordinate) => parseInt(coordinate, 10));
+      const coordinates = xyzStr.map((coordinate) => parseFloat(coordinate));
       return new THREE.Vector3(coordinates[0], coordinates[1], coordinates[2]);
     }
   }
