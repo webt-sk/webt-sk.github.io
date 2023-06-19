@@ -7,6 +7,7 @@ thumbnail: /projects/route.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
 
 # Route Grill 63
 
@@ -58,6 +59,10 @@ jedál a nápojov a priláka návštevníkov k návšteve tohto nového gastrono
 | Začiatok realizácie | 4/23       |
 | Spokojnosť klienta  | <StarsRating rating={4} />|
 
-### Recenzia klienta
-
-> foto
+<SlideShow
+  slides={[
+{ img: "/projects/route.webp", imgAlt: "burger", text: "Domov" },
+{ img: "/projects/route-1.webp", imgAlt: "burger", text: "Menu" },
+{ img: "/projects/route-2.webp", imgAlt: "burger", text: "Galéria" }
+]}
+/>

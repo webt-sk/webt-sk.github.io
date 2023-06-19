@@ -7,6 +7,7 @@ thumbnail: /projects/tixressel.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
 
 # Tixresell
 
@@ -60,6 +61,10 @@ Celkovým výsledkom je plne funkčný webový systém, ktorý umožňuje jednod
 | Začiatok realizácie | 8/22       |
 | Spokojnosť klienta  | <StarsRating rating={3.5} />|
 
-### Recenzia klienta
-
-> foto
+<SlideShow
+  slides={[
+{ img: "/projects/tixressel.webp", imgAlt: "burger", text: "Home" },
+{ img: "/projects/tixresell-1.webp", imgAlt: "burger", text: "Events" },
+{ img: "/projects/tixresell-2.webp", imgAlt: "burger", text: "FAQ" }
+]}
+/>

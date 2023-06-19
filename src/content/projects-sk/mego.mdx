@@ -7,6 +7,7 @@ thumbnail: /projects/mego.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
 
 # Mego drevené okná a dvere
 
@@ -60,6 +61,10 @@ kvalitu a dizajn drevených okien a dverí tejto firmy.
 | Začiatok realizácie | 4/22       |
 | Spokojnosť klienta  | <StarsRating rating={5} />|
 
-### Recenzia klienta
-
-> foto
+<SlideShow
+  slides={[
+{ img: "/projects/mego.webp", imgAlt: "burger", text: "Domov" },
+{ img: "/projects/mego-1.webp", imgAlt: "burger", text: "O nás" },
+{ img: "/projects/mego-2.webp", imgAlt: "burger", text: "Kontakt" }
+]}
+/>

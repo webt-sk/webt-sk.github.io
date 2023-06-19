@@ -7,6 +7,7 @@ thumbnail: /projects/penzion-stara-skola.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
 
 # Penzión stará škola
 
@@ -56,6 +57,10 @@ tento nádherný penzión.
 | Začiatok realizácie | 9/22                         |
 | Spokojnosť klienta  | <StarsRating rating={4.5} /> |
 
-### Recenzia klienta
-
-> foto
+<SlideShow
+  slides={[
+{ img: "/projects/penzion-stara-skola.webp", imgAlt: "burger", text: "Úvod" },
+{ img: "/projects/chata-1.webp", imgAlt: "burger", text: "Rezervácia" },
+{ img: "/projects/chata-2.webp", imgAlt: "burger", text: "Zariadenie" }
+]}
+/>

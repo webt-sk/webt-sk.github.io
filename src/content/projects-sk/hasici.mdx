@@ -7,6 +7,7 @@ thumbnail: /projects/hasici.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
 
 # Deň hasičov Kšinná
 
@@ -59,7 +60,11 @@ o dôležitých aspektoch podujatia a podporil ich účasť na tomto významnom 
 | Začiatok realizácie | 6/22       |
 | Spokojnosť klienta  | <StarsRating rating={5} />|
 
-### Recenzia klienta
-
-> foto
+<SlideShow
+  slides={[
+{ img: "/projects/hsci.webp", imgAlt: "burger", text: "Domov" },
+{ img: "/projects/hasici-1.webp", imgAlt: "burger", text: "Kto sme" },
+{ img: "/projects/hasici-2.webp", imgAlt: "burger", text: "Registrácia" }
+]}
+/>
 

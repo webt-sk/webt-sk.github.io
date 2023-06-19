@@ -7,6 +7,7 @@ thumbnail: /projects/dalitrans.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
 
 # Dalitrans s.r.o.
 
@@ -59,6 +60,10 @@ ktorý by efektívne komunikoval hlavné informácie o službách a logistike po
 | Začiatok realizácie | 1/22       |
 | Spokojnosť klienta  | <StarsRating rating={3.5} />|
 
-### Recenzia klienta
-
-> foto
+<SlideShow
+  slides={[
+{ img: "/projects/dalitrans.webp", imgAlt: "burger", text: "Domov" },
+{ img: "/projects/dalitrans-1.webp", imgAlt: "burger", text: "Servis" },
+{ img: "/projects/dalitrans-2.webp", imgAlt: "burger", text: "Služby" }
+]}
+/>
