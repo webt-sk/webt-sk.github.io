@@ -7,7 +7,7 @@ thumbnail: /projects/burger.webp
 import Technology from "../../components/Technology.astro";
 import { Icon } from "astro-icon";
 import StarsRating from "../../components/StarsRating.astro";
-import SlideShow from "../../components/SlideShow.astro"
+import SlideShow from "../../components/SlideShow.astro";
 
 # Fresh Burger´s 50
 
@@ -28,14 +28,14 @@ www.freshburgers.sk
 ### Popis projektu
 
 Projektom bola renovácia webovej stránky pre reštauráciu v Dubnici nad Váhom,
-zameranej na poskytovanie online objednávok. 
+zameranej na poskytovanie online objednávok.
 
 Stránka je zameraná na prezentáciu
 jedál a nápojov ponúkaných reštauráciou, a umožňuje návštevníkom pohodlne a rýchlo
 objednať si priamo cez internet. Používatelia majú možnosť prezerať si menu,
 vyberať si z rôznych kategórií jedál a pridávať ich do svojho košíka. Na stránke sú
 tiež dostupné informácie o otváracích hodinách, kontaktné údaje a prípadné aktuálne
-akcie alebo špeciálne ponuky reštaurácie. 
+akcie alebo špeciálne ponuky reštaurácie.
 
 Cieľom projektu bolo vytvoriť prehľadnú,
 modernú a intuitívnu webovú stránku, ktorá by uľahčila zákazníkom objednávanie jedál
@@ -51,11 +51,16 @@ a prispeje k lepšej komunikácii medzi reštauráciou a jej klientmi.
 
 ### Spätaná väzba
 
-|                     |            |
-| ------------------- | ---------- |
-| Dĺžka realizácie    | 18 dní      |
-| Začiatok realizácie | 6/22       |
-| Spokojnosť klienta  | <StarsRating rating={3.5} />|
+|                     |                              |
+| ------------------- | ---------------------------- |
+| Dĺžka realizácie    | 18 dní                       |
+| Začiatok realizácie | 6/22                         |
+| Spokojnosť klienta  | <StarsRating rating={3.5} /> |
 
-<SlideShow />
-
+<SlideShow
+  slides={[
+{ img: "/projects/burger.webp", imgAlt: "burger", text: "Home" },
+{ img: "/projects/dalitrans.webp", imgAlt: "burger", text: "Home" },
+{ img: "/projects/burger.webp", imgAlt: "burger", text: "Home" }
+]}
+/>
