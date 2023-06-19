@@ -21,6 +21,7 @@ export interface Props {
     color?: number;
   };
   class?: string;
+  mouseMove?: boolean;
 }
 
 const props = Astro.props;
@@ -51,6 +52,7 @@ const props = Astro.props;
     data-light-intensity={props.light.intensity}
     data-light-decay={props.light.decay}
     data-light-color={props.light.color}
+    data-mouse-move={props.mouseMove?.toString()}
   >
   </canvas>
 </div>
@@ -74,6 +76,10 @@ const props = Astro.props;
       durationMs: number;
       enabled: boolean;
     }[] = [];
+
+    mouseLeft = false;
+
+    private static MOUSE_SENSITIVITY = 0.0002;
 
     private static loader = new GLTFLoader();
     private static dracoLoader = new DRACOLoader();
@@ -133,6 +139,20 @@ const props = Astro.props;
       });
       this.renderer.setSize(canvas.width, canvas.height);
 
+      if (canvas.dataset.mouseMove === "true") {
+        document.addEventListener("mousemove", (event) => {
+          const deltaX = event.movementX || 0;
+          const deltaY = event.movementY || 0;
+
+          this.scene.rotation.y -= deltaX * ThreeDeeView.MOUSE_SENSITIVITY;
+          this.scene.rotation.x -= deltaY * ThreeDeeView.MOUSE_SENSITIVITY;
+        });
+
+        document.body.addEventListener("mouseleave", () => {
+          this.mouseLeft = true;
+        });
+      }
+
       window.addEventListener("resize", this.resizeCanvas.bind(this));
       this.resizeCanvas();
     }
@@ -184,6 +204,16 @@ const props = Astro.props;
       requestAnimationFrame(this.animate.bind(this));
 
       TWEEN.update();
+
+      if (
+        this.mouseLeft &&
+        this.scene.rotation.x !== 0 &&
+        this.scene.rotation.y !== 0
+      ) {
+        this.scene.rotation.x = 0;
+        this.scene.rotation.y = 0;
+        this.mouseLeft = false;
+      }
 
       this.render();
     }

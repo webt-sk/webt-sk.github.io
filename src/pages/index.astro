@@ -6,7 +6,7 @@ import LayoutSK from "../layouts/LayoutSK.astro";
 <LayoutSK headerPosition="fixed">
   <Home
     heading="Sme webTool"
-    description2="Vytvárame vaše web, eshopy či aplikácie"
+    description="Vytvárame vaše web, eshopy či aplikácie"
     freeWeb="Web zdarma?"
     scrollDown="Scrolluj dole"
     ourServices="Naše služby"
@@ -47,9 +47,30 @@ import LayoutSK from "../layouts/LayoutSK.astro";
         ],
       },
     ]}
+    freeWebHeading="Ste podnikateľ, fotograf či začínajúci startup a nemáte web?"
+    freeWebChance="Teraz máte jedinečnú možnosť ho získať zdarma"
+    freeWebIWant="CHCEM WEB ZDARMA"
+    freeWebHowTo="Ako na to?"
+    freeWebNeedIg="STAČÍ VÁM NA TO VÁŠ INSTAGRAM "
+    freeWebCount="POČET ZOSTÁVAJÚCICH MIEST"
+    freeWebCountFrom="z celkových"
+    freeWebConditions="PODMIENKY AKCIE"
+    freeWebDownload="stiahnuť"
   >
     <span slot="description"
       >Digitálna agentúra, ktorá Vás<br />ukáže svetu prostredníctvom webu</span
     >
+
+    <Fragment slot="freeWebText">
+      <p class="mb-4">
+        Vy budete zdieľať a propagovať náš profil na instagrame, zatiaľ čo my
+        budeme programovať váš web, férový obchod, no nie?.
+      </p>
+      <p class="mb-4">
+        Konkrétne podmienky celej akcie si môžte prečítať nižšie v pdf súbore,
+        ktorý je dostupný na stiahnutie.
+      </p>
+      <p class="mb-4">Akcia platí iba pre prvých 7 žiadajúcich.</p>
+    </Fragment>
   </Home>
 </LayoutSK>
