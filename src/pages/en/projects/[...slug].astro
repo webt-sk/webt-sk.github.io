@@ -15,7 +15,23 @@ const { Content } = await entry.render();
 ---
 
 <LayoutEN>
-  <div class="prose prose-ruzova mx-auto max-w-5xl pt-8">
+  <div
+    class="prose prose-ruzova mx-auto max-w-5xl py-10 prose-h1:mb-2 prose-h1:text-2xl prose-h2:mb-10 prose-h2:mt-0 prose-h2:text-4xl prose-h2:text-white prose-h3:mb-0 prose-table:w-fit prose-thead:hidden prose-tr:border-none prose-td:py-0.5 prose-td:text-base first:prose-td:font-bold last:prose-td:pl-12 last:prose-td:text-left"
+  >
     <Content />
+    <div class="flex flex-col items-center justify-center text-center">
+      <h3>Chcete aj vy modernú webstránku, aplikáciu či e-shop?</h3>
+      <p class="mt-3">
+        Neváhajte nás kontaktovať a my vám radi pomôžeme, poradíme<br/>a navrhneme
+        to najlepšie riešenie.
+      </p>
+
+      <a
+        href="/kontakty"
+        class="mb-5 rounded-xl border-2 border-transparent bg-ruzova px-3 py-2 font-bold text-white no-underline duration-300 hover:border-ruzova hover:bg-transparent md:px-4"
+      >
+        Napíšte nám
+      </a>
+    </div>
   </div>
 </LayoutEN>
