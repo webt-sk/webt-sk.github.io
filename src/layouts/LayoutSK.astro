@@ -3,12 +3,16 @@ import Layout from "../layouts/Layout.astro";
 
 export interface Props {
   headerPosition?: "fixed" | "sticky";
+  title: string;
+  description: string;
 }
 
 const props = Astro.props;
 ---
 
 <Layout
+  description={props.description}
+  title={props.title}
   lang="sk"
   headerPosition={props.headerPosition}
   links={[

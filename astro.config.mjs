@@ -4,10 +4,10 @@ import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import prefetch from "@astrojs/prefetch";
 import sitemap from "@astrojs/sitemap";
-import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://webt.sk",
   markdown: {
     shikiConfig: {
       theme: "one-dark-pro",
@@ -17,9 +17,14 @@ export default defineConfig({
     tailwind(),
     mdx(),
     prefetch(),
-    sitemap(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
+    sitemap({
+      i18n: {
+        defaultLocale: "sk",
+        locales: {
+          sk: "sk-SK",
+          en: "en-US",
+        },
+      },
     }),
   ],
 });

@@ -1,0 +1,145 @@
+<canvas id="three-dee-home" class="fixed left-0 top-0 -z-50"></canvas>
+
+<script>
+  import * as THREE from "three";
+
+  const STARS_COUNT = 800;
+  const STARS_SPEED = 0.02;
+
+  const STAR_MAX_X = 100;
+  const STAR_MIN_X = -100;
+  const STAR_MAX_Y = 48;
+  const STAR_MIN_Y = -48;
+  const STAR_MAX_Z = -50;
+  const STAR_MIN_Z = -160;
+
+  const STAR_SCALE_MIN = 0.9;
+  const STAR_SCALE_MAX = 1.2;
+
+  const STAR_OPACITY_SPEED = 0.01;
+  const STAR_OPACITY_HIDE_DISTANCE = 1.3;
+
+  const MOUSE_SENSITIVITY = 0.00001;
+
+  const canvas: HTMLCanvasElement = document.querySelector("#three-dee-home")!;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, canvas.width / canvas.height);
+  const light = new THREE.PointLight(0xffffff, 1, 0, 2);
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: true,
+  });
+  scene.add(light);
+
+  const starGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+  const starMaterials = [
+    new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      opacity: 0,
+      transparent: true,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xdeecfc,
+      opacity: 0,
+      transparent: true,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xd5dff2,
+      opacity: 0,
+      transparent: true,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xf4eede,
+      opacity: 0,
+      transparent: true,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: 0xfcfbf7,
+      opacity: 0,
+      transparent: true,
+    }),
+  ];
+
+  const stars = Array<THREE.Mesh>(STARS_COUNT);
+
+  for (let i = 0; i < STARS_COUNT; i++) {
+    stars[i] = createStar();
+  }
+
+  function createStar() {
+    const star = new THREE.Mesh(starGeometry);
+
+    generateStarProps(star);
+
+    scene.add(star);
+    return star;
+  }
+
+  function generateStarProps(star: THREE.Mesh, forceMaxZ = 0) {
+    const randomMaterial = Math.floor(Math.random() * starMaterials.length);
+    star.material = starMaterials[randomMaterial].clone();
+    star.position.x = Math.random() * (STAR_MAX_X - STAR_MIN_X) + STAR_MIN_X;
+    star.position.y = Math.random() * (STAR_MAX_Y - STAR_MIN_Y) + STAR_MIN_Y;
+    star.position.z =
+      Math.random() * (STAR_MAX_Z + forceMaxZ - STAR_MIN_Z) + STAR_MIN_Z;
+    const scale =
+      Math.random() * (STAR_SCALE_MAX - STAR_SCALE_MIN) + STAR_SCALE_MIN;
+    star.scale.set(scale, scale, scale);
+  }
+
+  function resize() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = canvas.width / canvas.height;
+    camera.updateProjectionMatrix();
+  }
+
+  window.addEventListener("resize", resize);
+
+  document.addEventListener("mousemove", (event) => {
+    const deltaX = event.movementX || 0;
+    const deltaY = event.movementY || 0;
+
+    scene.rotation.y -= deltaX * MOUSE_SENSITIVITY;
+    scene.rotation.x -= deltaY * MOUSE_SENSITIVITY;
+  });
+
+  let mouseLeft = false;
+
+  document.body.addEventListener("mouseleave", () => {
+    mouseLeft = true;
+  });
+
+  function animate() {
+    window.requestAnimationFrame(animate);
+
+    for (let i = 0; i < STARS_COUNT; i++) {
+      stars[i].position.z += STARS_SPEED;
+
+      // @ts-ignore
+      if (stars[i].material.opacity < 1) {
+        // @ts-ignore
+        stars[i].material.opacity += STAR_OPACITY_SPEED / 2;
+      }
+
+      if (stars[i].position.z > STAR_MAX_Z * STAR_OPACITY_HIDE_DISTANCE) {
+        // @ts-ignore
+        stars[i].material.opacity -= STAR_OPACITY_SPEED;
+      }
+
+      if (stars[i].position.z > STAR_MAX_Z) {
+        generateStarProps(stars[i], -90);
+      }
+    }
+
+    if (mouseLeft && scene.rotation.x !== 0 && scene.rotation.y !== 0) {
+      scene.rotation.x = 0;
+      scene.rotation.y = 0;
+      mouseLeft = false;
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  resize();
+  animate();
+</script>

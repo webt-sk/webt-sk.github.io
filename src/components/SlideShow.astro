@@ -12,7 +12,7 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<div class="slideshow-container relative mx-auto">
+<div class="slideshow-container relative mx-auto mb-12 mt-20">
   {
     props.slides.map((slide, index) => (
       <div
@@ -35,7 +35,7 @@ const props = Astro.props;
         <span
           data-index={index}
           class:list={[
-            "dot inline-block h-3 w-3 rounded-full bg-neutral-700 transition-colors",
+            "dot inline-block h-3 w-3 rounded-full bg-neutral-700 transition-colors cursor-pointer",
             index === 0 ? "active-dot" : "",
           ]}
         />
@@ -78,11 +78,7 @@ const props = Astro.props;
 </style>
 
 <script>
-  const SLIDE_CHANGE_TIMEOUT = 4000;
-
   let slideIndex = 0;
-  let slideshowTimeout;
-
   const slides: NodeListOf<HTMLElement> =
     document.querySelectorAll(".mySlides")!;
   const dots: NodeListOf<HTMLElement> = document.querySelectorAll(".dot")!;
@@ -90,27 +86,12 @@ const props = Astro.props;
   const prevBtn: HTMLButtonElement = document.querySelector("#prev-slide")!;
 
   prevBtn.addEventListener("click", () => {
-    clearSlidesTimeout();
     nextSlide({ dir: "down" });
   });
 
   nextBtn.addEventListener("click", () => {
-    clearSlidesTimeout();
     nextSlide({ dir: "up" });
   });
-
-  slides.forEach((s) => {
-    s.addEventListener("mouseover", clearSlidesTimeout);
-  });
-
-  slides.forEach((s) => {
-    s.addEventListener("mouseout", resumeSlides);
-  });
-
-  slideshowTimeout = setTimeout(
-    nextSlide.bind(null, { dir: "up" }),
-    SLIDE_CHANGE_TIMEOUT
-  );
 
   function nextSlide(opts: { dir?: "up" | "down"; index?: number }) {
     slides[slideIndex].classList.toggle("active-slide");
@@ -132,28 +113,10 @@ const props = Astro.props;
 
     slides[slideIndex].classList.toggle("active-slide");
     dots[slideIndex].classList.toggle("active-dot");
-
-    slideshowTimeout = setTimeout(
-      nextSlide.bind(null, { dir: "up" }),
-      SLIDE_CHANGE_TIMEOUT
-    );
-  }
-
-  function clearSlidesTimeout() {
-    console.log("clear");
-    clearTimeout(slideshowTimeout);
-  }
-
-  function resumeSlides() {
-    slideshowTimeout = setTimeout(
-      nextSlide.bind(null, { dir: "up" }),
-      SLIDE_CHANGE_TIMEOUT
-    );
   }
 
   dots.forEach((d) => {
     d.addEventListener("click", (event) => {
-      clearSlidesTimeout();
       // @ts-ignore
       nextSlide({ index: event.currentTarget.dataset.index });
     });
