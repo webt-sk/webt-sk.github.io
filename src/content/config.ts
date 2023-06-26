@@ -19,8 +19,8 @@ const projectsCollection = defineCollection({
 });
 
 export const collections = {
-  "blog-sk": blogCollection,
-  "blog-en": blogCollection,
+  /* "blog-sk": blogCollection, */
+  /* "blog-en": blogCollection, */
   "projects-sk": projectsCollection,
   "projects-en": projectsCollection,
 };

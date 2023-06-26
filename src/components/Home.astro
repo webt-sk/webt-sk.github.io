@@ -16,7 +16,6 @@ export interface Props {
   }[];
   freeWebHeading: string;
   freeWebChance: string;
-  freeWebIWant: string;
   freeWebHowTo: string;
   freeWebNeedIg: string;
   freeWebCount: string;
@@ -28,7 +27,7 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<main class="w-full scroll-smooth text-center lg:text-left">
+<main class="w-full scroll-smooth text-center lg:text-left pb-14">
   <section
     class="grid min-h-screen grid-cols-1 place-items-center pt-24 lg:grid-cols-2 lg:pt-0"
   >
@@ -68,14 +67,13 @@ const props = Astro.props;
     <ThreeDee
       models={[
         {
-          href: "/models/astronaut.glb",
-          position: [0, -1, 0],
-          rotation: [0, 0, 0],
-          animationEnabled: false,
+          href: "/models/astronaut-raketa.glb",
+          position: [0, 0, 0],
+          rotation: [15, -70, 0],
         },
       ]}
-      camera={{ position: [0, 1, 6] }}
-      light={{ position: [0, 1, 1] }}
+      camera={{ position: [0, 0, 8] }}
+      light={{ position: [0, 0, 6] }}
       mouseMove={true}
     />
   </section>
@@ -147,9 +145,6 @@ const props = Astro.props;
       <div class="relative md:-translate-y-12 md:text-right">
         <h2 class="mb-2 text-2xl text-ruzova">{props.freeWebHeading}</h2>
         <p class="mb-4 font-bold">{props.freeWebChance}</p>
-        <button class="rounded-xl bg-ruzova px-5 py-2 font-bold"
-          >{props.freeWebIWant}</button
-        >
       </div>
       <div class="md:text-left">
         <h3 class="mb-1 text-4xl font-bold text-ruzova">

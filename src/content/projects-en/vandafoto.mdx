@@ -1,0 +1,67 @@
+---
+title: VandaFoto
+description: Portfolio website for wedding and family photographer 
+thumbnail: /projects/vanda.webp
+---
+
+import Technology from "../../components/Technology.astro";
+import { Icon } from "astro-icon";
+import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
+
+# VandaFoto
+
+## Portfolio website for wedding and family photographer 
+
+### Client
+
+Vanda Karailieva
+
+### The project was worked on by
+
+Gabriel & Marcel
+
+### Link to the project
+
+[vandafoto.sk](https://vandafoto.sk)
+
+### Description of the project
+
+We created a website as a portfolio for a female photographer who can add her photos.
+
+The goal of the project was to create a presentation of photographic works with an emphasis on simplicity and clarity.
+The website allows the photographer to log into her account and upload her photos to a portfolio.
+The system for uploading photos has been implemented so that adding and organizing images is simple and intuitive for the photographer.
+
+The overall result is a professional website that effectively presents the photographer's portfolio and allows for easy editing
+and updating the content by adding new photos.
+
+### Used technologies
+
+<div class="not-prose mt-5 flex flex-wrap gap-7">
+  <Technology name="Astro" color="#7310a3" size={40}>
+    <Icon name="simple-icons:astro" size={40} />
+  </Technology>
+  <Technology name="JavaScript" color="#f6e12d" size={40}>
+    <Icon name="vscode-icons:file-type-js-official" size={40} />
+  </Technology>
+  <Technology name="tailwindcss" color="#139494" size={40}>
+    <Icon name="logos:tailwindcss-icon" size={40} />
+  </Technology>
+</div>
+
+### Feedback
+
+|                     |                            |
+| ------------------- | -------------------------- |
+| Working time        | 4 dni                      |
+| Beginning of work   | 3/23                       |
+| Client satisfaction | <StarsRating rating={5} /> |
+
+<SlideShow
+  slides={[
+    { img: "/projects/vanda.webp", imgAlt: "home", text: "Home" },
+    { img: "/projects/vanda-1.webp", imgAlt: "about me", text: "About me" },
+    { img: "/projects/vanda-2.webp", imgAlt: "portfolio", text: "Portfolio" },
+  ]}
+/>

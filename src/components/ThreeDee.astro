@@ -118,11 +118,11 @@ const props = Astro.props;
 
       const amplitudes = data
         .modelsAnimationAmplitude!.split(" ")
-        .map((s) => this.parseNum(s, 0.2));
+        .map((s) => this.parseNum(s, 0.1));
 
       const durations = data
         .modelsAnimationDuration!.split(" ")
-        .map((s) => this.parseNum(s, 2000));
+        .map((s) => this.parseNum(s, 3000));
 
       const enabled = data
         .modelsAnimationEnabled!.split(" ")
