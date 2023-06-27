@@ -28,23 +28,24 @@ const props = Astro.props;
       class="flex-auto"
       models={[
         {
-          href: "/models/riso.glb",
+          href: "/models/riso-top.glb",
           rotation: [0, 0, 0],
-          position: [-2, 0, 0],
+          position: [1.8, 0.7, 0],
         },
         {
-          href: "/models/gabo.glb",
+          href: "/models/gabo-top.glb",
           rotation: [0, 0, 0],
           position: [0, 0, 0],
         },
         {
-          href: "/models/marcel.glb",
+          href: "/models/marcel-top.glb",
           rotation: [0, 0, 0],
-          position: [2, 0, 0],
+          position: [-1.5, 0.3, 0],
         },
       ]}
       camera={{
-        position: [0, 1, 5],
+        position: [0, 0, 6.5],
+        fov: 35,
       }}
       light={{
         position: [-3, 6, 8],
