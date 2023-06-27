@@ -14,7 +14,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<LayoutEN>
+<LayoutEN title={entry.data.title + " | webT"} description="">
   <div
     class="prose prose-ruzova mx-auto max-w-5xl py-10 prose-h1:mb-2 prose-h1:text-2xl prose-h2:mb-10 prose-h2:mt-0 prose-h2:text-4xl prose-h2:text-white prose-h3:mb-0 prose-table:w-fit prose-thead:hidden prose-tr:border-none prose-td:py-0.5 prose-td:text-base first:prose-td:font-bold last:prose-td:pl-12 last:prose-td:text-left"
   >
