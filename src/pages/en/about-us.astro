@@ -3,38 +3,42 @@ import About from "../../components/About.astro";
 import LayoutEN from "../../layouts/LayoutEN.astro";
 ---
 
-<!-- TODO:  -->
-<LayoutEN title="About us | webT">
+<LayoutEN title="About us | webT" description="We are a group of experts in the field of programming and designing websites, e-shops and applications.">
   <About
     heading="About us"
-    description="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-    introduction="what would i tell you about myself outside of work?"
+    welcome="Welcome to the about us section"
+    introduction="we are webTool, a digital agency that will show you to the world through the web"
+    description="We are a group of experts in the field of programming and designing websites, e-shops and applications."
+    personIntroduction="what would i tell you about myself outside of work?"
     people={[
       {
         name: "Marcel",
         heading: "FULLSTACK DEVELOPER & CO-FOUNDER",
         description:
           "Marcel is a talented full stack programmer with a passion for design. His work is focused on creating functional and innovative solutions for development. His skills and creative approach contribute to the success of the projects he works on.",
-        about:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        about: `<p>My name is Marcel and I am a young guy from the vicinity of Trenčín. In my free time, I like to just ride my bike or "stare at the sky", cycling allows me to discover new places and feel free.<br />Astronomy fascinates me and allows me to gain knowledge about the universe.</p>
+           <p>I can make a great pizza, but I also burn my tea.</p>
+          `,
         models: ["/models/marcel.glb", "/models/laptop.glb"],
       },
       {
         name: "Gabriel",
         heading: "GRAPHIC DESIGNER & CO-FOUNDER",
         description:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        about:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+          "Gabriel is a talented graphic designer and illustrator in the WebTool team. In addition to his role in the creation of visual elements, he also holds the role of a UI/UX designer, which enables him to bring creative and aesthetically pleasing solutions to clients. He extended his skills to the area of ​​front-end development, which allows him to connect design with technical aspects of projects and thus create harmony between aesthetics and functionality.",
+        about: `<p>In my free time, I liked to play football since I was a child. I practiced it for almost 10 years, but due to an injury, I had to stop this sport. I am a sporty type and I really enjoy boxing and working out in the fitness center, where I keep fit and in shape.</p>
+           <p>I love traveling because it enriches me with new cultures, places and people. I also really like to cook. I like to experiment in the kitchen and thereby make others happy (sometimes it's edible :) ). I also really appreciate sitting for coffee with my friends and I like to spend time with people I like.</p>
+          `,
         models: ["/models/gabo.glb", "/models/tablet.glb"],
       },
       {
         name: "Richard",
         heading: "FRONTEND DEVELOPER",
         description:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        about:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+          "Richard is a talented frontend programmer and the youngest member of our team. His passion for development and frontend was born at a young age, and since then he has been constantly learning and gaining new experiences from his more experienced colleagues.",
+        about: `<p>In my free time, I engage in several activities that bring me joy and help me develop. Even though I'm still a student and going to school, I'm also dedicated to continuous improvement in programming. I try to keep up with the latest technologies and expand my programming skills.</p>
+          <p>I enjoy football very much and devote a lot of time to it. I spend it at trainings and matches, where I can apply my sports passion and competitiveness. In addition, I also work out intensively and try to beat my personal best in triathlon in the gym. I get joy from improving my physical performance and feel grateful for a strong and healthy lifestyle.</p>
+          `,
         models: ["/models/riso.glb", "/models/phone.glb"],
       },
     ]}

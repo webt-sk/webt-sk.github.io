@@ -3,38 +3,42 @@ import About from "../components/About.astro";
 import LayoutSK from "../layouts/LayoutSK.astro";
 ---
 
-<!-- TODO:  -->
-<LayoutSK title="Kto sme | webT">
+<LayoutSK title="Kto sme | webT" description="Sme skupina odborníkov v oblasti programovania a navrhovania webových stránok, eshopov a aplikácií.">
   <About
     heading="Kto sme"
-    description="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-    introduction="čo by som vám o sebe povedal mimo práce?"
+    welcome="Vitajte v časti o nás"
+    introduction="sme webTool, digitálna agentúra, ktorá vás ukáže svetu prostredníctvom webu"
+    description="Sme skupina odborníkov v oblasti programovania a navrhovania webových stránok, eshopov a aplikácií"
+    personIntroduction="čo by som vám o sebe povedal mimo práce?"
     people={[
       {
         name: "Marcel",
         heading: "FULLSTACK DEVELOPER & CO-FOUNDER",
         description:
           "Marcel je talentovaný fullstack programátor s vášňou pre dizajn. Jeho práca je zameraná na vytváranie funkčných a inovatívnych riešení pre vývoj. Jeho schopnosti a kreatívny prístup prispievajú k úspechu projektov, na ktorých pracuje.",
-        about:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        about: `<p>Volám sa Marcel a som mladý chalan z okolia Trenčína. Vo voľnom čase sa rád len tak vyvážam na bicykli alebo "čumím do neba", cyklistika mi umožňuje objavovať nové miesta a cítiť sa slobodne. <br />Astronómia ma fascinuje a dovoľuje mi získavať poznanie o vesmíre.</p>
+                <p>Viem spraviť super pizzu, no okrem toho mi prihorí aj čaj.</p>
+        `,
         models: ["/models/marcel.glb", "/models/laptop.glb"],
       },
       {
         name: "Gabriel",
         heading: "GRAPHIC DESIGNER & CO-FOUNDER",
         description:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        about:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+          "Gabriel je talentovaný grafik a ilustrátor v tíme WebTool. Okrem svojej roly pri tvorbe vizuálnych prvkov, zastáva aj úlohu UI/UX dizajnéra, čo mu umožňuje prinášať kreatívne a esteticky príjemné riešenia pre klientov. Svoje schopnosti rozšíril aj na oblasť frontend vývoja, čím dokáže prepojiť dizajn s technickými aspektmi projektov a vytvoriť tak súlad medzi estetikou a funkcionalitou.",
+        about: `<p>Vo voľnom čase som odmalička rád hrával futbal. Venoval som sa mu takmer 10 rokov, no kvôli zraneniu som musel s týmto športom prestať. Som športový typ a veľmi ma baví box a posilňovanie vo fitness centre, kde si udržujem kondíciu a formu.</p>
+                <p>Milujem cestovanie, pretože ma obohacuje o nové kultúry, miesta a ľudí. Takisto veľmi rád varím. V kuchyni rád experimentujem a tým robím radosť ostatným ( občas ak sa to zrovna dá jesť :) ). Veľmi si vážim aj posedenie na kávičke len tak s kamarátmi a obľubujem tráviť čas s ľuďmi, ktorých mám rád.</p>
+        `,
         models: ["/models/gabo.glb", "/models/tablet.glb"],
       },
       {
         name: "Richard",
         heading: "FRONTEND DEVELOPER",
         description:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        about:
-          "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+          "Richard je talentovaný frontend programátor a najmladší člen nášho tímu. Jeho vášeň pre vývoj a frontend sa zrodila už v mladom veku, a odvtedy neustále sa učí a získava nové skúsenosti od svojich skúsenejších kolegov.",
+        about: `<p>Vo voľnom čase sa venujem niekoľkým aktivitám, ktoré mi prinášajú radosť a pomáhajú mi rozvíjať sa. Aj keď som stále študentom a chodím do školy, venujem sa aj neustálemu zdokonaľovaniu v programovaní. Snažím sa držať krok s najnovšími technológiami a rozširovať si svoje programátorské schopnosti.</p>
+                <p>Futbal ma veľmi baví a venujem mu veľa času. Trávim ho na tréningoch a zápasoch, kde môžem uplatniť svoju športovú vášeň a súťaživosť. Okrem toho sa tiež intenzívne venujem cvičeniu a snažím sa prekonávať svoje osobné rekordy v trojboji vo fitku. Získavam radosť zo zlepšovania svojho fyzického výkonu a cítim sa vďačný za silný a zdravý životný štýl.</p>
+        `,
         models: ["/models/riso.glb", "/models/phone.glb"],
       },
     ]}

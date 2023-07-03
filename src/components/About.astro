@@ -9,9 +9,11 @@ export interface Props {
     about: string;
     models: [string, string];
   }[];
+  personIntroduction: string;
   heading: string;
-  description: string;
+  welcome: string;
   introduction: string;
+  description: string;
 }
 
 const props = Astro.props;
@@ -51,7 +53,11 @@ const props = Astro.props;
         position: [-3, 6, 8],
       }}
     />
-    <p class="max-w-md lg:max-w-screen-md lg:text-lg">
+    <h2 class="mb-1 text-4xl font-bold">{props.welcome}</h2>
+    <p class="mb-6 max-w-md text-lg font-light text-zelena lg:max-w-screen-md">
+      {props.introduction}
+    </p>
+    <p class="max-w-md text-xl lg:max-w-screen-md">
       {props.description}
     </p>
   </div>
@@ -59,9 +65,9 @@ const props = Astro.props;
     props.people.map((person) => (
       <section class="mx-auto grid max-w-md grid-cols-1 lg:max-w-screen-lg lg:grid-cols-2 2xl:max-w-none">
         <div class="flex flex-col justify-center">
-          <h2 class="mb-0.5 text-4xl font-bold text-ruzova">{person.name}</h2>
-          <h3 class="mb-2 text-2xl italic text-zelena">{person.heading}</h3>
-          <p>{person.description}</p>
+          <h3 class="mb-0.5 text-4xl font-bold text-ruzova">{person.name}</h3>
+          <h4 class="mb-2 text-2xl italic text-zelena">{person.heading}</h4>
+          <p set:html={person.description} />
         </div>
         <ThreeDee
           class="order-4 !h-96 lg:order-none"
@@ -96,10 +102,10 @@ const props = Astro.props;
           }}
         />
         <div class="flex flex-col justify-center">
-          <h4 class="mb-1 text-right text-xl italic text-zelena">
-            {props.introduction}
-          </h4>
-          <p class="text-right">{person.about}</p>
+          <h5 class="mb-1 text-right text-xl italic text-zelena">
+            {props.personIntroduction}
+          </h5>
+          <div set:html={person.about} class="text-right [&_p]:mb-2" />
         </div>
       </section>
     ))
