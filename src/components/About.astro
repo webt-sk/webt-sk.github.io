@@ -1,14 +1,13 @@
 ---
-import ThreeDee from "./ThreeDee.astro";
-
 export interface Props {
   people: {
     name: string;
     heading: string;
     description: string;
     about: string;
-    models: [string, string];
+    images: [{ src: string; alt: string }, { src: string; alt: string }];
   }[];
+  altTopImg: string;
   personIntroduction: string;
   heading: string;
   welcome: string;
@@ -21,37 +20,15 @@ const props = Astro.props;
 
 <main class="flex w-full flex-col gap-12 pb-12">
   <div
-    class="flex h-screen flex-col items-center justify-center py-12 text-center"
+    class="flex min-h-screen flex-col items-center justify-center pb-12 text-center sm:py-12"
   >
-    <h1 class="text-5xl font-bold text-ruzova lg:text-7xl">
+    <h1 class="mb-8 text-5xl font-bold text-ruzova sm:mb-0 lg:text-7xl">
       {props.heading}
     </h1>
-    <ThreeDee
-      class="flex-auto"
-      models={[
-        {
-          href: "/models/riso-top.glb",
-          rotation: [0, 0, 0],
-          position: [1.8, 0.7, 0],
-        },
-        {
-          href: "/models/gabo-top.glb",
-          rotation: [0, 0, 0],
-          position: [0, 0, 0],
-        },
-        {
-          href: "/models/marcel-top.glb",
-          rotation: [0, 0, 0],
-          position: [-1.5, 0.3, 0],
-        },
-      ]}
-      camera={{
-        position: [0, 0, 6.5],
-        fov: 35,
-      }}
-      light={{
-        position: [-3, 6, 8],
-      }}
+    <img
+      src="/about/triple.webp"
+      alt={props.altTopImg}
+      class="animate-levitate mb-14 sm:mb-0"
     />
     <h2 class="mb-1 text-4xl font-bold">{props.welcome}</h2>
     <p class="mb-6 max-w-md text-lg font-light text-zelena lg:max-w-screen-md">
@@ -63,51 +40,50 @@ const props = Astro.props;
   </div>
   {
     props.people.map((person) => (
-      <section class="mx-auto grid max-w-md grid-cols-1 lg:max-w-screen-lg lg:grid-cols-2 2xl:max-w-none">
+      <section class="mx-auto mb-6 grid max-w-md grid-cols-1 gap-4 lg:max-w-screen-lg lg:grid-cols-2 2xl:max-w-none">
         <div class="flex flex-col justify-center">
           <h3 class="mb-0.5 text-4xl font-bold text-ruzova">{person.name}</h3>
           <h4 class="mb-2 text-2xl italic text-zelena">{person.heading}</h4>
-          <p set:html={person.description} />
+          <p set:html={person.description} class="leading-7" />
         </div>
-        <ThreeDee
-          class="order-4 !h-96 lg:order-none"
-          models={[
-            {
-              href: person.models[0],
-              rotation: [0, 0, 0],
-              position: [0, 0, 0],
-            },
-          ]}
-          camera={{
-            position: [0, 1.25, 3.55],
-          }}
-          light={{
-            position: [-1, 3, 4],
-          }}
+        <img
+          class="animate-levitate order-4 mx-auto w-full object-cover md:w-fit lg:order-none"
+          src={person.images[0].src}
+          alt={person.images[0].alt}
         />
-        <ThreeDee
-          class="!h-72"
-          models={[
-            {
-              href: person.models[1],
-              rotation: [0, 0, 0],
-              position: [0, 0, 0],
-            },
-          ]}
-          camera={{
-            position: [0, 0.1, 1.4],
-          }}
-          light={{
-            position: [0, 1, 1],
-          }}
+        <img
+          class="animate-levitate mx-auto w-full object-cover md:w-fit"
+          src={person.images[1].src}
+          alt={person.images[1].alt}
         />
         <div class="flex flex-col justify-center">
           <h5 class="mb-1 text-right text-xl italic text-zelena">
             {props.personIntroduction}
           </h5>
-          <div set:html={person.about} class="text-right [&_p]:mb-2" />
+          <div
+            set:html={person.about}
+            class="text-right leading-7 [&_p]:mb-2"
+          />
         </div>
       </section>
     ))
   }
 </main>
+
+<style>
+  .animate-levitate {
+    animation: levitate 10s ease-in-out infinite;
+  }
+
+  @keyframes levitate {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+</style>

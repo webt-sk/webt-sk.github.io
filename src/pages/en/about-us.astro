@@ -3,8 +3,12 @@ import About from "../../components/About.astro";
 import LayoutEN from "../../layouts/LayoutEN.astro";
 ---
 
-<LayoutEN title="About us | webT" description="We are a group of experts in the field of programming and designing websites, e-shops and applications.">
+<LayoutEN
+  title="About us | webT"
+  description="We are a group of experts in the field of programming and designing websites, e-shops and applications."
+>
   <About
+    altTopImg="3D model of members"
     heading="About us"
     welcome="Welcome to the about us section"
     introduction="we are webTool, a digital agency that will show you to the world through the web"
@@ -19,7 +23,10 @@ import LayoutEN from "../../layouts/LayoutEN.astro";
         about: `<p>My name is Marcel and I am a young guy from the vicinity of Trenčín. In my free time, I like to just ride my bike or "stare at the sky", cycling allows me to discover new places and feel free.<br />Astronomy fascinates me and allows me to gain knowledge about the universe.</p>
            <p>I can make a great pizza, but I also burn my tea.</p>
           `,
-        models: ["/models/marcel.glb", "/models/laptop.glb"],
+        images: [
+          { src: "/about/marcel.webp", alt: "3D model of Marcel" },
+          { src: "/about/laptop.webp", alt: "3D model of laptop" },
+        ],
       },
       {
         name: "Gabriel",
@@ -29,7 +36,10 @@ import LayoutEN from "../../layouts/LayoutEN.astro";
         about: `<p>In my free time, I liked to play football since I was a child. I practiced it for almost 10 years, but due to an injury, I had to stop this sport. I am a sporty type and I really enjoy boxing and working out in the fitness center, where I keep fit and in shape.</p>
            <p>I love traveling because it enriches me with new cultures, places and people. I also really like to cook. I like to experiment in the kitchen and thereby make others happy (sometimes it's edible :) ). I also really appreciate sitting for coffee with my friends and I like to spend time with people I like.</p>
           `,
-        models: ["/models/gabo.glb", "/models/tablet.glb"],
+        images: [
+          { src: "/about/gabo.webp", alt: "3D model of Gabo" },
+          { src: "/about/tablet.webp", alt: "3D model of tablet" },
+        ],
       },
       {
         name: "Richard",
@@ -39,7 +49,10 @@ import LayoutEN from "../../layouts/LayoutEN.astro";
         about: `<p>In my free time, I engage in several activities that bring me joy and help me develop. Even though I'm still a student and going to school, I'm also dedicated to continuous improvement in programming. I try to keep up with the latest technologies and expand my programming skills.</p>
           <p>I enjoy football very much and devote a lot of time to it. I spend it at trainings and matches, where I can apply my sports passion and competitiveness. In addition, I also work out intensively and try to beat my personal best in triathlon in the gym. I get joy from improving my physical performance and feel grateful for a strong and healthy lifestyle.</p>
           `,
-        models: ["/models/riso.glb", "/models/phone.glb"],
+        images: [
+          { src: "/about/riso.webp", alt: "3D model of Rišo" },
+          { src: "/about/phone.webp", alt: "3D model of phone" },
+        ],
       },
     ]}
   />

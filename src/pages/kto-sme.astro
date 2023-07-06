@@ -3,8 +3,12 @@ import About from "../components/About.astro";
 import LayoutSK from "../layouts/LayoutSK.astro";
 ---
 
-<LayoutSK title="Kto sme | webT" description="Sme skupina odborníkov v oblasti programovania a navrhovania webových stránok, eshopov a aplikácií.">
+<LayoutSK
+  title="Kto sme | webT"
+  description="Sme skupina odborníkov v oblasti programovania a navrhovania webových stránok, eshopov a aplikácií."
+>
   <About
+    altTopImg="3D model členovia"
     heading="Kto sme"
     welcome="Vitajte v časti o nás"
     introduction="sme webTool, digitálna agentúra, ktorá vás ukáže svetu prostredníctvom webu"
@@ -19,7 +23,10 @@ import LayoutSK from "../layouts/LayoutSK.astro";
         about: `<p>Volám sa Marcel a som mladý chalan z okolia Trenčína. Vo voľnom čase sa rád len tak vyvážam na bicykli alebo "čumím do neba", cyklistika mi umožňuje objavovať nové miesta a cítiť sa slobodne. <br />Astronómia ma fascinuje a dovoľuje mi získavať poznanie o vesmíre.</p>
                 <p>Viem spraviť super pizzu, no okrem toho mi prihorí aj čaj.</p>
         `,
-        models: ["/models/marcel.glb", "/models/laptop.glb"],
+        images: [
+          { src: "/about/marcel.webp", alt: "3D model Marcel" },
+          { src: "/about/laptop.webp", alt: "3D model notebook" },
+        ],
       },
       {
         name: "Gabriel",
@@ -29,7 +36,10 @@ import LayoutSK from "../layouts/LayoutSK.astro";
         about: `<p>Vo voľnom čase som odmalička rád hrával futbal. Venoval som sa mu takmer 10 rokov, no kvôli zraneniu som musel s týmto športom prestať. Som športový typ a veľmi ma baví box a posilňovanie vo fitness centre, kde si udržujem kondíciu a formu.</p>
                 <p>Milujem cestovanie, pretože ma obohacuje o nové kultúry, miesta a ľudí. Takisto veľmi rád varím. V kuchyni rád experimentujem a tým robím radosť ostatným ( občas ak sa to zrovna dá jesť :) ). Veľmi si vážim aj posedenie na kávičke len tak s kamarátmi a obľubujem tráviť čas s ľuďmi, ktorých mám rád.</p>
         `,
-        models: ["/models/gabo.glb", "/models/tablet.glb"],
+        images: [
+          { src: "/about/gabo.webp", alt: "3D model Gabo" },
+          { src: "/about/tablet.webp", alt: "3D model tablet" },
+        ],
       },
       {
         name: "Richard",
@@ -39,7 +49,10 @@ import LayoutSK from "../layouts/LayoutSK.astro";
         about: `<p>Vo voľnom čase sa venujem niekoľkým aktivitám, ktoré mi prinášajú radosť a pomáhajú mi rozvíjať sa. Aj keď som stále študentom a chodím do školy, venujem sa aj neustálemu zdokonaľovaniu v programovaní. Snažím sa držať krok s najnovšími technológiami a rozširovať si svoje programátorské schopnosti.</p>
                 <p>Futbal ma veľmi baví a venujem mu veľa času. Trávim ho na tréningoch a zápasoch, kde môžem uplatniť svoju športovú vášeň a súťaživosť. Okrem toho sa tiež intenzívne venujem cvičeniu a snažím sa prekonávať svoje osobné rekordy v trojboji vo fitku. Získavam radosť zo zlepšovania svojho fyzického výkonu a cítim sa vďačný za silný a zdravý životný štýl.</p>
         `,
-        models: ["/models/riso.glb", "/models/phone.glb"],
+        images: [
+          { src: "/about/riso.webp", alt: "3D model Rišo" },
+          { src: "/about/phone.webp", alt: "3D model telefon" },
+        ],
       },
     ]}
   />
