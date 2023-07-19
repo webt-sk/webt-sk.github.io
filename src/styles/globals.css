@@ -19,3 +19,19 @@
     @apply font-bold;
   }
 }
+
+.animate-levitate {
+  animation: levitate 10s ease-in-out infinite;
+}
+
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

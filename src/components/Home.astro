@@ -1,6 +1,4 @@
 ---
-import { Icon } from "astro-icon";
-import ThreeDee from "./ThreeDee.astro";
 export interface Props {
   heading: string;
   description: string;
@@ -63,18 +61,7 @@ const props = Astro.props;
         >
       </div>
     </div>
-    <ThreeDee
-      models={[
-        {
-          href: "/models/astronaut-raketa.glb",
-          position: [0, 0, 0],
-          rotation: [15, -70, 0],
-        },
-      ]}
-      camera={{ position: [0, 0, 8] }}
-      light={{ position: [0, 0, 6] }}
-      mouseMove={true}
-    />
+    <img src="/raketa-astronaut.webp" alt="astronaut riding rocket" class="animate-levitate md:max-lg:pt-10 md:max-lg:pb-6">
   </section>
   <section class="mb-12" id="our-services">
     <h2 class="mb-2 text-xl italic text-zelena">{props.whatDoWeOffer}</h2>
