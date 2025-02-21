@@ -1,0 +1,51 @@
+---
+title: DUKATRADE
+description: Website for an electrical installation company
+thumbnail: /projects/dukatrade.sk/domov.webp 
+---
+
+import Technology from "../../components/Technology.astro";
+import { Icon } from "astro-icon";
+import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
+
+# DUKATRADE 
+
+## Website for an electrical installation company 
+
+### Client
+
+DUKATRADE
+
+### Link to the project
+
+[dukatrade.sk](https://dukatrade.sk)
+
+### Used technologies
+
+<div class="not-prose mt-5 flex flex-wrap gap-7">
+  <Technology name="Astro" color="#7310a3" size={40}>
+    <Icon name="simple-icons:astro" size={40} />
+  </Technology>
+  <Technology name="TypeScript" color="#3178c6" size={40}>
+    <Icon name="logos:typescript-icon" size={40} />
+  </Technology>
+  <Technology name="tailwindcss" color="#139494" size={40}>
+    <Icon name="logos:tailwindcss-icon" size={40} />
+  </Technology>
+</div>
+
+### Feedback
+
+|                     |                            |
+| ------------------- | -------------------------- |
+| Working time        | 10 days                    |
+| Beginning of work   | 12/24                      |
+| Client satisfaction | <StarsRating rating={5} /> |
+
+<SlideShow
+  slides={[
+    { img: "/projects/dukatrade.sk/domov.webp", imgAlt: "home", text: "Home" },
+    { img: "/projects/dukatrade.sk/kontakt.webp", imgAlt: "contact", text: "Contact" },
+  ]}
+/>

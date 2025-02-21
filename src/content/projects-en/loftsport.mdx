@@ -1,0 +1,55 @@
+---
+title: LOFT sports center
+description: Booking system for a sports center
+thumbnail: /projects/loftsport.sk/domov.webp 
+---
+
+import Technology from "../../components/Technology.astro";
+import { Icon } from "astro-icon";
+import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
+
+# LOFT sports center 
+
+## Booking system for a sports center 
+
+### Client
+
+LOFT sports center
+
+### Link to the project
+
+[loftsport.sk](https://loftsport.sk)
+
+### Used technologies
+
+<div class="not-prose mt-5 flex flex-wrap gap-7">
+  <Technology name="Next.js" color="#ffffff" size={40}>
+    <Icon name="akar-icons:nextjs-fill" size={40} />
+  </Technology>
+  <Technology name="TypeScript" color="#3178c6" size={40}>
+    <Icon name="logos:typescript-icon" size={40} />
+  </Technology>
+  <Technology name="PostgreSQL" color="#336791" size={40}>
+    <Icon name="logos:postgresql" size={40} />
+  </Technology>
+  <Technology name="tailwindcss" color="#139494" size={40}>
+    <Icon name="logos:tailwindcss-icon" size={40} />
+  </Technology>
+</div>
+
+### Feedback
+
+|                     |                              |
+| ------------------- | ---------------------------- |
+| Working time        | 4 months                     |
+| Beginning of work   | 5/24                         |
+| Client satisfaction | <StarsRating rating={3.5} /> |
+
+<SlideShow
+  slides={[
+    { img: "/projects/loftsport.sk/domov.webp", imgAlt: "home", text: "Home" },
+    { img: "/projects/loftsport.sk/prihlasenie_na_trening.webp.webp", imgAlt: "sign up for training", text: "Sign up for training" },
+    { img: "/projects/loftsport.sk/rozvrh.webp.webp", imgAlt: "schedule", text: "Schedule" },
+  ]}
+/>

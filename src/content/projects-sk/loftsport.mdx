@@ -1,0 +1,55 @@
+---
+title: LOFT športové centrum
+description: Rezervačný systém pre športové centrum
+thumbnail: /projects/loftsport.sk/domov.webp 
+---
+
+import Technology from "../../components/Technology.astro";
+import { Icon } from "astro-icon";
+import StarsRating from "../../components/StarsRating.astro";
+import SlideShow from "../../components/SlideShow.astro";
+
+# LOFT športové centrum 
+
+## Rezervačný systém pre športové centrum 
+
+### Klient
+
+LOFT športové centrum
+
+### Odkaz na projekt
+
+[loftsport.sk](https://loftsport.sk)
+
+### Použité technológie
+
+<div class="not-prose mt-5 flex flex-wrap gap-7">
+  <Technology name="Next.js" color="#ffffff" size={40}>
+    <Icon name="akar-icons:nextjs-fill" size={40} />
+  </Technology>
+  <Technology name="TypeScript" color="#3178c6" size={40}>
+    <Icon name="logos:typescript-icon" size={40} />
+  </Technology>
+  <Technology name="PostgreSQL" color="#336791" size={40}>
+    <Icon name="logos:postgresql" size={40} />
+  </Technology>
+  <Technology name="tailwindcss" color="#139494" size={40}>
+    <Icon name="logos:tailwindcss-icon" size={40} />
+  </Technology>
+</div>
+
+### Spätaná väzba
+
+|                     |                              |
+| ------------------- | ---------------------------- |
+| Dĺžka realizácie    | 4 mesiace                    |
+| Začiatok realizácie | 5/24                         |
+| Spokojnosť klienta  | <StarsRating rating={3.5} /> |
+
+<SlideShow
+  slides={[
+    { img: "/projects/loftsport.sk/domov.webp", imgAlt: "domov", text: "Domov" },
+    { img: "/projects/loftsport.sk/prihlasenie_na_trening.webp.webp", imgAlt: "prihlásenie na tréning", text: "Prihlásenie na tréning" },
+    { img: "/projects/loftsport.sk/rozvrh.webp.webp", imgAlt: "rozvrh", text: "Rozvrh" },
+  ]}
+/>

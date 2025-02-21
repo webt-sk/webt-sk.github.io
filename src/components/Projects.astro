@@ -11,7 +11,7 @@ const projects = await getCollection(props.collection);
 ---
 
 <main
-  class="mx-auto grid max-w-sm grid-cols-1 place-items-center gap-5 py-10 md:max-w-4xl md:grid-cols-2 md:gap-8 md:px-8 xl:max-w-none xl:grid-cols-3 2xl:gap-10 2xl:px-0"
+  class="mx-auto grid max-w-sm grid-cols-1 place-items-center gap-5 py-10 md:max-w-4xl md:grid-cols-2 md:gap-8 md:px-8 xl:max-w-none xl:grid-cols-3 2xl:gap-10 2xl:px-0 items-stretch"
 >
   {
     projects.map((project) => (
@@ -21,10 +21,10 @@ const projects = await getCollection(props.collection);
         }/${project.slug}`}
         class="group"
       >
-        <article>
-          <div class="relative">
+        <article class="h-full flex flex-col">
+          <div class="relative flex-auto">
             <img
-              class="w-full"
+              class="w-full h-full object-cover"
               src={project.data.thumbnail}
               alt={project.data.title}
             />
