@@ -1,79 +1,321 @@
 ---
-import Home from "../components/Home.astro";
-import LayoutSK from "../layouts/LayoutSK.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<LayoutSK
-  headerPosition="fixed"
-  title="webT"
-  description="Sme webTool, digitálna agentúra, ktorá vás ukáže svetu prostredníctvom webu."
->
-  <Home
-    heading="Sme webTool"
-    description="Vytvárame vaše weby, eshopy či aplikácie"
-    freeWeb="Web zdarma?"
-    scrollDown="Scrolluj dole"
-    ourServices="Naše služby"
-    whatDoWeOffer="ČO PONÚKAME?"
-    whatDoWeOfferDesc="Pomáhame značkám, prinášame ambiciózne nápady, a to všetko pri zachovaní jednoduchosti, estetickosti a praktickosti."
-    cards={[
-      {
-        heading: "Marketing",
-        description:
-          "Náš tím markeťákov Vám nastaví a prispôsobí Váš web pre čo najlepšie konverzie.",
-        services: [
-          "Content research",
-          "Web marketing",
-          "Seo optimization",
-          "Storytelling",
-        ],
-      },
-      {
-        heading: "Digital Design",
-        description:
-          "Vytvoríme pútavý a zaujímavý dizajn. Prispôsobíme ho vám a vašim požiadavkám.",
-        services: [
-          "Branding",
-          "UI/UX Design",
-          "Visual design",
-          "Prototyping and testing",
-        ],
-      },
-      {
-        heading: "Development",
-        description:
-          "Všetko naprogramujeme a vytvoríme. Neexistuje problém, ktorý nevyriešime.",
-        services: [
-          "Web development",
-          "Web optimization",
-          "Eshop, app development",
-          "Support & management",
-        ],
-      },
-    ]}
-    freeWebHeading="Ste podnikateľ, fotograf či začínajúci startup a nemáte web?"
-    freeWebChance="Teraz máte jedinečnú možnosť ho získať zdarma"
-    freeWebHowTo="Ako na to?"
-    freeWebNeedIg="STAČÍ VÁM NA TO VÁŠ INSTAGRAM "
-    freeWebCount="POČET ZOSTÁVAJÚCICH MIEST"
-    freeWebCountFrom="z celkových"
-    freeWebConditions="PODMIENKY AKCIE"
-    freeWebDownload="stiahnuť"
-  >
-    <span slot="description"
-      >Digitálna agentúra, ktorá Vás<br />ukáže svetu prostredníctvom webu</span
+<Layout>
+  <section class="flex min-h-screen items-center justify-center">
+    <h1
+      class="text-center text-4xl leading-snug font-bold sm:text-6xl lg:text-7xl xl:text-8xl"
     >
+      <span class="fade-in-from-bottom block opacity-0">Digitálne riešenia</span
+      >
+      <span class="fade-in-from-bottom block opacity-0 ![animation-delay:.4s]"
+        >rýchlo & na mieru</span
+      >
+    </h1>
+  </section>
+  <section class="container mx-auto">
+    <video id="video" src="/gama-promo.webm" muted loop></video>
+  </section>
+  <section id="doveruju-nam" class="container mx-auto py-32 md:py-48 xl:py-64">
+    <div>
+      <h2
+        class="mb-32 text-center text-3xl font-bold sm:text-4xl lg:text-4xl xl:text-5xl"
+      >
+        Dôverujú nám
+      </h2>
+      <div class="swiper h-64">
+        <div class="swiper-wrapper h-full">
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://loftsport.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/loft.png"
+                alt="logo loft"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://e-real.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/e-real.png"
+                alt="logo e-real"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://dalitrans.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/dalitrans_logo.svg"
+                alt="logo dalitrans"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://dukatrade.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/dukatrade.svg"
+                alt="logo dukatrade"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://fincross.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/fincross-logo.svg"
+                alt="logo fincross"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://finreal.eu">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/finreal.svg"
+                alt="logo finreal"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://zubajdusan.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/dusan-zubaj.svg"
+                alt="logo Dušan Zubaj"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://myzu.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/myzu-logo-black.png"
+                alt="logo myzu"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://routegrill63.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/routegrill63.svg"
+                alt="logo routegrill63"
+              />
+            </a>
+          </div>
+          <div class="swiper-slide !flex h-full items-center justify-center">
+            <a href="https://routegrill50.sk">
+              <img
+                class="w-64 grayscale-100"
+                src="/clients/route-50-grill-logo.svg"
+                alt="logo routegrill50"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    id="sluzby"
+    class="bg-secondary text-text flex min-h-screen items-center justify-center px-3 py-8"
+  >
+    <div class="container grid grid-cols-1 items-center md:grid-cols-2">
+      <h2
+        class="text-center text-3xl font-bold text-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+      >
+        Services
+      </h2>
 
-    <Fragment slot="freeWebText">
-      <p class="mb-4">
-        Vy budete zdieľať a propagovať náš profil na instagrame, zatiaľ čo my
-        budeme programovať váš web, férový obchod, no nie?.
-      </p>
-      <p class="mb-4">
-        Konkrétne podmienky celej akcie si môžte prečítať nižšie v pdf súbore,
-        ktorý je dostupný na stiahnutie.
-      </p>
-      <p class="mb-4">Akcia platí iba pre prvých 7 žiadajúcich.</p>
-    </Fragment>
-  </Home>
-</LayoutSK>
+      <div
+        x-data="{expanded: 2}"
+        class="[&_button]:text-inactive flex flex-col gap-4 md:gap-6 xl:gap-8 [&_button]:cursor-pointer [&_button]:text-3xl [&_button]:font-bold [&_button]:transition-colors [&_button]:hover:text-white [&_button]:sm:text-4xl [&_button]:lg:text-4xl [&_button]:xl:text-5xl"
+      >
+        <div>
+          <button
+            @click="expanded = expanded == 1 ? 0 : 1"
+            :class="expanded == 1 ? '!text-black' : ''">kódime</button
+          >
+          <p class="py-2" x-show="expanded == 1" x-collapse>
+            Radi si sadneme k čistému kódu a napíšeme ho tak, aby šlapal ako
+            hodinky. Žiadne zbytočné komplikácie, len moderné riešenia, ktoré
+            fungujú. Či už ide o jednoduchý web alebo komplexný e-shop, vždy to
+            urobíme tak, aby to bolo rýchle a spoľahlivé.
+          </p>
+        </div>
+
+        <div>
+          <button
+            @click="expanded = expanded == 2 ? 0 : 2"
+            :class="expanded == 2 ? '!text-black' : ''">programujeme</button
+          >
+          <p class="py-2" x-show="expanded == 2" x-collapse>
+            Milujeme čísla, logiku a výpočty – proste ten nerdský svet.
+            Naprogramujeme ti e-shop, ktorý zvládne tisíce objednávok a ani sa
+            nezapotí. Od prvého kliknutia až po posledný riadok kódu.
+          </p>
+        </div>
+        <div>
+          <button
+            @click="expanded = expanded == 3 ? 0 : 3"
+            :class="expanded == 3 ? '!text-black' : ''">produkujeme</button
+          >
+          <p class="py-2" x-show="expanded == 3" x-collapse>
+            Nemáš fotky, videá alebo grafiku? Žiadny problém! Máme super kamošov
+            fotografov, dizajnérov a tvorcov, ktorí vedia robiť zázraky.
+            Postaráme sa, aby tvoj web vyzeral profi aj vďaka skvelému vizuálu.
+          </p>
+        </div>
+        <div>
+          <button
+            @click="expanded = expanded == 4 ? 0 : 4"
+            :class="expanded == 4 ? '!text-black' : ''">marketujeme</button
+          >
+          <p class="py-2" x-show="expanded == 4" x-collapse>
+            voj web alebo e-shop nebude len stáť a čakať. Vďaka našim
+            marketingovým skillom a šikovným partnerom ťa dostaneme medzi ľudí.
+            Facebook, Instagram, Google či LinkedIn – vieme, kde sa máš ukázať a
+            ako tam zaujať.
+          </p>
+        </div>
+        <div>
+          <button
+            @click="expanded = expanded == 5 ? 0 : 5"
+            :class="expanded == 5 ? '!text-black' : ''">optimalizujeme</button
+          >
+          <p class="py-2" x-show="expanded == 5" x-collapse>
+            Rýchlosť, SEO, použiteľnosť – hej, aj na to treba myslieť. Pre nás
+            je web, ktorý sa načíta pomaly, osobná urážka. Upravíme ho tak, aby
+            si ho zamilovali nielen tvoji zákazníci, ale aj Google.
+          </p>
+        </div>
+        <div>
+          <button
+            @click="expanded = expanded == 6 ? 0 : 6"
+            :class="expanded == 6 ? '!text-black' : ''">staráme sa</button
+          >
+          <p class="py-2" x-show="expanded == 6" x-collapse>
+            Web hotový? My odchádzame až keď si spokojný… a vlastne ani potom
+            nie. Postaráme sa o aktualizácie, zálohy, bezpečnosť aj drobné
+            úpravy. S nami máš istotu, že tvoj web má vždy niekoho, kto mu kryje
+            chrbát.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="kontakt" class="pt-5 pb-10 md:pt-8 md:pb-14 lg:pt-16 lg:pb-28">
+    <h2
+      class="mb-4 text-center text-4xl leading-snug font-bold sm:text-6xl lg:text-7xl"
+    >
+      Zavolajme si
+    </h2>
+    <div
+      class="mb-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xl font-bold md:mb-14 md:text-2xl lg:mb-16 lg:text-3xl"
+    >
+      <a
+        class="hover:text-secondary transition-colors"
+        href="tel:+421 917 938 624">+421 917 938 624</a
+      >
+      <a
+        class="hover:text-secondary transition-colors"
+        href="mailto:info@gamastudio.sk">info@gamastudio.sk</a
+      >
+    </div>
+    <nav
+      class="mx-auto flex w-full max-w-2xs justify-evenly font-light max-sm:order-3 max-sm:col-span-2"
+    >
+      <a class="hover:text-secondary transition-colors" href="/#doveruju-nam"
+        >work</a
+      >
+      <a class="hover:text-secondary transition-colors" href="/#sluzby"
+        >services</a
+      >
+      <a class="hover:text-secondary transition-colors" href="/#o-nas">about</a>
+    </nav>
+  </section>
+</Layout>
+
+<script>
+  import Swiper from "swiper";
+  import { Autoplay } from "swiper/modules";
+  import "swiper/css";
+
+  const swiper = new Swiper(".swiper", {
+    modules: [Autoplay],
+    slidesPerView: 2,
+    centeredSlides: true,
+    loop: true,
+    autoHeight: false,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 3000,
+    },
+  }).on("resize", (swiper) => {
+    resizeSwiper(swiper);
+  });
+
+  function resizeSwiper(swiper: Swiper) {
+    if (window.innerWidth < 640) {
+      swiper.params.slidesPerView = 2;
+    } else if (window.innerWidth < 1024) {
+      swiper.params.slidesPerView = 3;
+    } else {
+      swiper.params.slidesPerView = 4;
+    }
+    swiper.update();
+  }
+
+  resizeSwiper(swiper);
+
+  const video = document.querySelector("#video") as HTMLVideoElement;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log("playing video");
+          video.play();
+        }
+      });
+    },
+    {
+      rootMargin: "-100px 0px",
+    },
+  );
+  observer.observe(video);
+</script>
+
+<style>
+  .swiper-slide img {
+    @apply grayscale-100 transition-all;
+  }
+
+  .swiper-slide-active img {
+    @apply grayscale-0;
+  }
+
+  .fade-in-from-bottom {
+    animation: fade-in-from-bottom 0.6s ease-in forwards;
+  }
+
+  @keyframes fade-in-from-bottom {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    50% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 0.3;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+</style>

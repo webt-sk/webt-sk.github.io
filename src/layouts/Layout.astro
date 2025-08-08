@@ -1,198 +1,35 @@
 ---
-import { Icon } from "astro-icon";
-import Logo from "../components/Logo.astro";
-import "../styles/globals.css";
-import HeaderLink from "../components/HeaderLink.astro";
-import StarsBackground from "../components/StarsBackground.astro";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/700.css";
-import "@fontsource/roboto/900.css";
-import "@fontsource/roboto/400-italic.css";
-
-export interface Props {
-  lang: "en" | "sk";
-  links: {
-    name: string;
-    href: string;
-    prefetch?: boolean;
-  }[];
-  headerPosition?: "fixed" | "sticky";
-  title: string;
-  description: string;
-}
-
-const props = Astro.props;
+import "../styles/global.css";
+import "@fontsource/host-grotesk";
 ---
 
-<!DOCTYPE html>
-<html lang={props.lang}>
+<html lang="sk" class="scroll-smooth">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/logo.svg" />
-    <title>{props.title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={props.description} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <slot name="meta" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Gama Studio</title>
   </head>
-  <body
-    class="relative flex min-h-screen flex-col overflow-x-hidden scroll-smooth bg-black text-white selection:bg-teal-200 selection:bg-opacity-40"
-  >
-    <div
-      id="header-container"
-      class={`${
-        !props.headerPosition ? "sticky" : props.headerPosition
-      } left-0 top-0 z-30 box-border w-screen border-b border-b-transparent duration-300`}
-    >
-      <header
-        class="mx-auto flex w-full max-w-screen-2xl items-center px-4 py-5 pr-4 text-white md:py-7"
-      >
-        <div class="flex-auto">
-          <a
-            href={props.links[0].href}
-            class="block w-fit"
-            aria-label={props.lang === "en"
-              ? "Link to homepage"
-              : "Odkaz na domovskú stránku"}
-          >
-            <Logo size={40} />
-          </a>
-        </div>
-        <div class="relative z-50 h-10 md:hidden">
-          <button id="header-menu-btn"
-            ><Icon name="bi:list" size={40} class="text-white" /></button
-          >
-        </div>
-
-        <div
-          id="header-links"
-          class="fixed right-0 top-0 z-40 hidden h-screen w-full max-w-[200px] border-l border-neutral-800 bg-neutral-950 bg-opacity-90 text-white sm:min-w-0 md:static md:block md:h-full md:max-w-fit md:border-transparent md:bg-transparent"
-        >
-          <nav
-            class="mt-24 flex flex-col gap-2 px-5 text-lg md:mt-0 md:flex-row md:gap-7 lg:gap-12"
-          >
-            {
-              props.links.map((link) => (
-                <HeaderLink href={link.href} prefetch={link.prefetch}>
-                  {link.name}
-                </HeaderLink>
-              ))
-            }
-          </nav>
-        </div>
-        <div
-          id="backdrop"
-          class="fixed left-0 top-0 z-30 hidden h-screen w-screen"
-        >
-        </div>
-      </header>
-    </div>
-
-    <div
-      class="mx-auto flex w-full max-w-screen-2xl flex-auto flex-col items-center justify-center px-4"
-    >
-      <slot />
-    </div>
-    <div class="mt-auto w-screen border-t border-t-neutral-800 bg-neutral-950">
-      <footer
-        class="mx-auto flex w-full max-w-screen-2xl flex-wrap justify-evenly gap-4 p-3 pt-5 sm:gap-7 md:p-4 lg:gap-16 lg:px-4"
-      >
-        <div class="mb-3 w-full sm:mb-0 md:w-fit md:flex-auto">
-          <a
-            class="flex items-center justify-center gap-3 md:justify-start"
-            href="/"
-          >
-            <Logo size={30} />
-            <div class="text-xl font-bold">webTool</div>
-          </a>
-        </div>
-        <div
-          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
-        >
-          <Icon size={20} class="text-zelena" name="bi:envelope-fill" />
-          <a href="mailto:info@webt.sk">info@webt.sk</a>
-        </div>
-        <div
-          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
-        >
-          <Icon size={20} class="text-zelena" name="bi:telephone-fill" />
-          <a href="tel:+421 917 938 624">+421&nbsp;917&nbsp;938&nbsp;624</a>
-        </div>
-        <div
-          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
-        >
-          <Icon size={20} class="text-zelena" name="bi:facebook" />
-          <a href="https://www.facebook.com/webt.sk">Facebook</a>
-        </div>
-        <div
-          class="flex cursor-pointer items-center justify-start gap-2 transition-colors hover:text-ruzova"
-        >
-          <Icon size={20} class="text-zelena" name="bi:instagram" />
-          <a href="https://www.instagram.com/webt.sk/">Instagram</a>
-        </div>
-      </footer>
-    </div>
-    <StarsBackground />
+  <body class="bg-primary text-white">
+    <header class="absolute top-0 left-1/2 -translate-x-1/2 container pt-5 max-sm:px-3 grid grid-cols-2 sm:grid-cols-3 gap-y-5 md:pt-8 lg:pt-10 2xl:pt-14 items-center">
+      <div class="max-sm:order-1">
+        <a href="/" class="w-fit block">
+          <img src="/logo.svg" alt="Logo">
+        </a>
+      </div>
+      <nav class="font-light max-sm:order-3 max-sm:col-span-2 flex justify-evenly max-w-2xs w-full mx-auto">
+        <a class="hover:text-secondary transition-colors" href="/#doveruju-nam">work</a>
+        <a class="hover:text-secondary transition-colors" href="/#sluzby">services</a>
+        <a class="hover:text-secondary transition-colors" href="/#o-nas">about</a>
+      </nav>
+      <div class="max-sm:order-2 flex gap-3 items-center justify-end">
+        <a href="/#kontakt" class="bg-secondary text-black px-3 py-1 rounded-lg hover:bg-white transition-colors">contact</a>
+        <a href="www.instagram.com" class="hover:text-secondary transition-colors">
+          <svg class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"/></svg>
+        </a>
+      </div>
+    </header>
+    <slot />
   </body>
 </html>
-
-<script>
-  // toggle header on mobile
-  const headerMenuBtn = document.querySelector("#header-menu-btn")!;
-  const backdrop = document.querySelector("#backdrop")!;
-  const headerLinks = document.querySelector("#header-links")!;
-
-  let headerLinksOpened = false;
-
-  function backdropCloseToggle() {
-    if (!headerLinksOpened) {
-      backdrop.addEventListener("click", headerLinksToggleEvent);
-      headerLinksOpened = true;
-    } else {
-      backdrop.removeEventListener("click", headerLinksToggleEvent);
-      headerLinksOpened = false;
-    }
-  }
-
-  function headerLinksToggle(force?: boolean) {
-    headerLinks.classList.toggle("hidden", force);
-    backdrop.classList.toggle("backdrop-blur-sm", force);
-    backdrop.classList.toggle("hidden", force);
-    backdropCloseToggle();
-  }
-
-  function headerLinksToggleEvent() {
-    headerLinksToggle();
-  }
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768 && headerLinksOpened) {
-      headerLinksToggle();
-    }
-  });
-
-  headerMenuBtn.addEventListener("click", headerLinksToggleEvent);
-
-  // header effects on scroll
-  const headerContainer = document.querySelector("#header-container")!;
-
-  function headerEffectsScrolled(isScrolled: boolean) {
-    if (isScrolled) {
-      headerContainer.classList.add("header-scroll-effects");
-    } else {
-      headerContainer.classList.remove("header-scroll-effects");
-    }
-  }
-
-  function checkScroll() {
-    if (window.scrollY === 0) {
-      headerEffectsScrolled(false);
-    } else {
-      headerEffectsScrolled(true);
-    }
-  }
-
-  window.onscroll = checkScroll;
-
-  checkScroll();
-</script>

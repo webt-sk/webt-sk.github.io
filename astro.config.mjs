@@ -1,30 +1,16 @@
-import { defineConfig } from "astro/config";
+// @ts-check
+import { defineConfig } from 'astro/config';
 
-import tailwind from "@astrojs/tailwind";
-import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
-import sitemap from "@astrojs/sitemap";
+import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
+
+import alpinejs from '@astrojs/alpinejs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://webt.sk",
-  markdown: {
-    shikiConfig: {
-      theme: "one-dark-pro",
-    },
+  vite: {
+    plugins: [tailwindcss()]
   },
-  integrations: [
-    tailwind(),
-    mdx(),
-    prefetch(),
-    sitemap({
-      i18n: {
-        defaultLocale: "sk",
-        locales: {
-          sk: "sk-SK",
-          en: "en-US",
-        },
-      },
-    }),
-  ],
+
+    integrations: [sitemap(), alpinejs({entrypoint: "/src/alpineSetup"})]
 });
