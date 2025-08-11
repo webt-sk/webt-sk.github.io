@@ -1,6 +1,15 @@
 ---
 import "../styles/global.css";
-import "@fontsource/host-grotesk";
+import "@fontsource/host-grotesk/300";
+import "@fontsource/host-grotesk/400";
+import "@fontsource/host-grotesk/700";
+import "@fontsource/host-grotesk/800";
+
+const props = Astro.props;
+
+export interface Props {
+  footerTheme?: "light" | "dark",
+}
 ---
 
 <html lang="sk" class="scroll-smooth">
@@ -19,9 +28,9 @@ import "@fontsource/host-grotesk";
         </a>
       </div>
       <nav class="font-light max-sm:order-3 max-sm:col-span-2 flex justify-evenly max-w-2xs w-full mx-auto">
-        <a class="hover:text-secondary transition-colors" href="/#doveruju-nam">work</a>
-        <a class="hover:text-secondary transition-colors" href="/#sluzby">services</a>
-        <a class="hover:text-secondary transition-colors" href="/#o-nas">about</a>
+        <a class="hover:text-secondary transition-colors relative after:absolute after:-bottom-1 after:left-0 after:ml-[50%] after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:ease-in hover:after:ml-0 hover:after:w-full" href="/#doveruju-nam">work</a>
+        <a class="hover:text-secondary transition-colors relative after:absolute after:-bottom-1 after:left-0 after:ml-[50%] after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:ease-in hover:after:ml-0 hover:after:w-full" href="/#sluzby">services</a>
+        <a class="hover:text-secondary transition-colors relative after:absolute after:-bottom-1 after:left-0 after:ml-[50%] after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:ease-in hover:after:ml-0 hover:after:w-full" href="/about">about</a>
       </nav>
       <div class="max-sm:order-2 flex gap-3 items-center justify-end">
         <a href="/#kontakt" class="bg-secondary text-black px-3 py-1 rounded-lg hover:bg-white transition-colors">contact</a>
@@ -31,5 +40,35 @@ import "@fontsource/host-grotesk";
       </div>
     </header>
     <slot />
+    <footer id="kontakt" class:list={["pt-5 pb-10 md:pt-8 md:pb-14 lg:pt-16 lg:pb-28", props.footerTheme === "light" ? "bg-secondary text-black" : ""]}>
+    <h2
+      class="mb-6 lg:mb-8 text-center text-4xl leading-snug font-bold sm:text-6xl lg:text-7xl"
+    >
+      Zavolajme si
+    </h2>
+    <div
+      class="mb-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xl font-bold md:mb-14 md:text-2xl lg:mb-20 lg:text-3xl"
+    >
+      <a
+        class="hover:text-secondary transition-colors"
+        href="tel:+421 917 938 624">+421 917 938 624</a
+      >
+      <a
+        class="hover:text-secondary transition-colors"
+        href="mailto:info@gamastudio.sk">info@gamastudio.sk</a
+      >
+    </div>
+    <nav
+      class="mx-auto flex w-full max-w-2xs justify-evenly font-light max-sm:order-3 max-sm:col-span-2"
+    >
+      <a class="hover:text-secondary transition-colors relative after:absolute after:-bottom-1 after:left-0 after:ml-[50%] after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:ease-in hover:after:ml-0 hover:after:w-full" href="/#doveruju-nam"
+        >work</a
+      >
+      <a class="hover:text-secondary transition-colors relative after:absolute after:-bottom-1 after:left-0 after:ml-[50%] after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:ease-in hover:after:ml-0 hover:after:w-full" href="/#sluzby"
+        >services</a
+      >
+      <a class="hover:text-secondary transition-colors relative after:absolute after:-bottom-1 after:left-0 after:ml-[50%] after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:ease-in hover:after:ml-0 hover:after:w-full" href="/about">about</a>
+    </nav>
+  </footer>
   </body>
 </html>
